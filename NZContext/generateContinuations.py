@@ -15,7 +15,7 @@ def generate_continuations(prompts,masks,model_type, num_continuations):
     for prompt in unmasked_prompts:
         continuations_group = []
         for i in range(num_continuations):
-            generation = model(prompt,   pad_token_id=50256, truncation=True)
+            generation = model(prompt,   pad_token_id=50256, truncation=True, num_beams=1)
             continuation = generation[0]['generated_text'].split('\n\n')[0]
             # continuation = generation[0]['generated_text'].split('.')[0] + '.'
             continuations_group.append(continuation)
