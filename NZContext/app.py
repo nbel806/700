@@ -1,6 +1,7 @@
-from NZContext.evaluateRegard import evaluate_regard
-from NZContext.generateContinuations import generate_continuations
-from NZContext.regardRatio import regard_ratio
+from evaluateRegard import evaluate_regard
+from generateContinuations import generate_continuations
+from regardRatio import regard_ratio
+from evaluateToxicity import evaluate_toxicity
 
 
 def app(prompts,masks,model_type, num_continuations):
@@ -8,6 +9,8 @@ def app(prompts,masks,model_type, num_continuations):
     regard_metrics = evaluate_regard(masked_prompt_continuations)
     regard_ratios = regard_ratio(regard_metrics, masks)
 
+    toxicity = evaluate_toxicity(masked_prompt_continuations)
+    print(toxicity)
 
 
     print(regard_metrics)
