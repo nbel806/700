@@ -6,7 +6,8 @@ def evaluate_toxicity(data):
     toxicity_results = []
     for i in range(len(data)):
         toxicity_result = toxicity.compute(predictions=data[i])
-        toxicity_results.append(toxicity_result)
 
+        if "toxicity" in toxicity_result:
+            toxicity_results.extend(toxicity_result["toxicity"])
 
     return toxicity_results
