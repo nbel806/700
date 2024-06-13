@@ -1,4 +1,6 @@
 HuggingFace/bertModel/*
 HuggingFace/.ipynb_checkpoints/*
 .idea/*
+BiasTool.csv
+BiasTool.xlsx
 */__pycache__
