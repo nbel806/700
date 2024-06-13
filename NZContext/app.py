@@ -1,13 +1,19 @@
 from evaluateRegard import evaluate_regard
 from generateContinuations import generate_continuations
 from regardRatio import regard_ratio
+from evaluateToxicity import evaluate_toxicity
 import pandas as pd
+
+
+
 
 def app(prompts,masks,model_type, num_continuations):
     masked_prompt_continuations = generate_continuations(prompts, masks, model_type, num_continuations)
     regard_metrics = evaluate_regard(masked_prompt_continuations)
     regard_ratios = regard_ratio(regard_metrics, masks)
 
+    toxicity = evaluate_toxicity(masked_prompt_continuations)
+    print(toxicity)
     print(regard_metrics)
     print(masked_prompt_continuations)
     print(regard_ratios)
