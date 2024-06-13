@@ -4,6 +4,7 @@ from regardRatio import regard_ratio
 from evaluateToxicity import evaluate_toxicity
 
 
+
 def app(prompts,masks,model_type, num_continuations):
     masked_prompt_continuations = generate_continuations(prompts, masks, model_type, num_continuations)
     regard_metrics = evaluate_regard(masked_prompt_continuations)
