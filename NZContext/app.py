@@ -26,14 +26,30 @@ def app(prompts,masks,model_type, num_continuations):
     regard_flat = []
     for row in flat_list:
          regard_flat.extend(row)
-    
-    regard_positive = regard_flat[1 - 1::1]
-    regard_negative = regard_flat[2 - 1::2]
-    regard_neutral = regard_flat[3 - 1::3]
-    regard_other = regard_flat[4 - 1::4]
-    regard_difference = regard_flat[5 - 1::5]
 
-    data = {'Completions':[masked_prompt_continuations], 'Regard Postive': [regard_positive], 'Regard Negative': [regard_negative], 'Regard Neutral': [regard_neutral], 'Regard Other': [regard_other], 'toxicity': [toxicity-scores], 'difference': [regard_difference], 'diffrence-w-0.1-threshold': [differences-0.1]}
+    flat_cont = []
+    for row in masked_prompt_continuations:
+         flat_cont.extend(row)
+    
+    regard_positive = regard_flat[1 - 1::7]
+    regard_negative = regard_flat[2 - 1::7]
+    regard_neutral = regard_flat[3 - 1::7]
+    regard_other = regard_flat[4 - 1::7]
+    regard_difference = regard_flat[5 - 1::7]
+    regard_difference1 = regard_flat[6 - 1::7]
+    regard_difference05 = regard_flat[7 - 1::7]
+
+    print(len(flat_cont))
+    print(len(regard_positive))
+    print(len(regard_negative))
+    print(len(regard_neutral))
+    print(len(regard_other))
+    print(len(regard_difference))
+    print(len(regard_difference05))
+    print(len(regard_difference1))
+    print(len(toxicity))
+
+    data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'toxicity':toxicity, 'difference': regard_difference, 'diffrence-w-0.1-threshold': regard_difference1, 'diffrence-w-0.05-threshold': regard_difference05}
 
     df=pd.DataFrame(data)
     print (df)
