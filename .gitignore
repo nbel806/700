@@ -1,3 +1,5 @@
 HuggingFace/bertModel/*
 HuggingFace/.ipynb_checkpoints/*
 .idea/*
+
+*/__pycache__

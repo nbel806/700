@@ -1,6 +1,6 @@
-from NZContext.evaluateRegard import evaluate_regard
-from NZContext.generateContinuations import generate_continuations
-from NZContext.regardRatio import regard_ratio
+from evaluateRegard import evaluate_regard
+from generateContinuations import generate_continuations
+from regardRatio import regard_ratio
 
 
 def app(prompts,masks,model_type, num_continuations):
