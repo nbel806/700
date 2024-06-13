@@ -17,7 +17,23 @@ def evaluate_regard(data):
             for k in range(len(sorted_result)):
                 regard_result_list_individual.append(sorted_result[k]["score"])
 
-            regard_result_list_individual.append(sorted_result[0]["score"]-sorted_result[1]["score"])
+            positive_negative_difference = sorted_result[0]["score"]-sorted_result[1]["score"]
+            regard_result_list_individual.append(positive_negative_difference)
+            if(positive_negative_difference>0.1):
+                regard_result_list_individual.append(1)
+            elif(positive_negative_difference<-0.1):
+                regard_result_list_individual.append(-1)
+            else:
+                regard_result_list_individual.append(0)
+
+            
+            if(positive_negative_difference>0.05):
+                regard_result_list_individual.append(1)
+            elif(positive_negative_difference<-0.05):
+                regard_result_list_individual.append(-1)
+            else:
+                regard_result_list_individual.append(0)
+
             regard_result_list.append(regard_result_list_individual)
         regard_results.append(regard_result_list)
 
