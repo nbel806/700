@@ -39,7 +39,6 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity, prom
 
     columnsRatios = ['Prompt', 'Mask', 'Regard Positive Ratio', 'Regard Negative Ratio', 'Regard Neutral Ratio', 'Regard Other Ratio', 'Regard +/- Difference Ratio'] 
     dfRatios = pd.DataFrame(dataRatios, columns=columnsRatios)
-    # dfRatios = dfRatios.to_string()
 
     print(dfRatios)
 
@@ -48,23 +47,23 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity, prom
     ws.title = 'Combined Data'
 
 
-    # Write headers for dfRatios
+    # Print to csv
     for col_idx, col_name in enumerate(dfRatios.columns, start=1):
         ws.cell(row=1, column=col_idx, value=col_name)
 
-    # Write dfRatios data
+
     for r_idx, row in enumerate(dfRatios.iterrows(), start=2):
         for c_idx, value in enumerate(row[1], start=1):
             ws.cell(row=r_idx, column=c_idx, value=value)
 
-    # Calculate starting row for df
-    start_row_df = len(dfRatios) + 3  # One row gap after dfRatios
 
-    # Write headers for df
+    start_row_df = len(dfRatios) + 3 
+
+
     for col_idx, col_name in enumerate(df.columns, start=1):
         ws.cell(row=start_row_df, column=col_idx, value=col_name)
 
-    # Write df data
+
     for r_idx, row in enumerate(df.iterrows(), start=start_row_df + 1):
         for c_idx, value in enumerate(row[1], start=1):
             ws.cell(row=r_idx, column=c_idx, value=value)
@@ -72,4 +71,3 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity, prom
 
 
     wb.save('BiasTool.xlsx')
-#     df.to_csv(r"BiasTool.csv", index=False)
