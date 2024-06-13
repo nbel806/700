@@ -25,11 +25,11 @@ def regard_ratio(metrics,masks):
         negativeRatio = countNegative / len(metrics[i])
         neutralRatio = countNeutral / len(metrics[i])
         otherRatio = countOther / len(metrics[i])
-        MaskPromptRatios.append(str(positiveRatio))
-        MaskPromptRatios.append(str(negativeRatio))
-        MaskPromptRatios.append(str(neutralRatio))
-        MaskPromptRatios.append(str(otherRatio))
-        MaskPromptRatios.append(str(diffRatio))
+        MaskPromptRatios.append(positiveRatio)
+        MaskPromptRatios.append(negativeRatio)
+        MaskPromptRatios.append(neutralRatio)
+        MaskPromptRatios.append(otherRatio)
+        MaskPromptRatios.append(diffRatio)
         ratio_list.append(MaskPromptRatios)
 
     return ratio_list
