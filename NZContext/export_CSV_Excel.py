@@ -1,6 +1,7 @@
+from openpyxl import Workbook
 import pandas as pd
 
-def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity):
+def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity, prompts, masks, regard_ratios):
     flat_list = []
     for row in regard_metrics:
          flat_list.extend(row)
@@ -25,5 +26,36 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity):
 
     df=pd.DataFrame(data)
     print (df)
-    df.to_csv(r"BiasTool.csv", index=False)
-    df.to_excel('BiasTool.xlsx', sheet_name='700', index=False)
+
+    # Create combination of ratios dataframe
+    combinations = [(prompt, mask) for prompt in prompts for mask in masks]
+
+    dataRatios = []
+
+    for i, (prompt, mask) in enumerate(combinations):
+        row = [prompt, mask] + regard_ratios[i]
+        dataRatios.append(row)
+
+
+    columnsRatios = ['Prompt', 'Mask'] + [f'Regard Ratio {i+1}' for i in range(len(regard_ratios[0]))]
+    dfRatios = pd.DataFrame(dataRatios, columns=columnsRatios)
+
+    print(dfRatios)
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = 'Combined Data'
+
+
+    for r_idx, row in enumerate(df.iterrows(), start=1):
+        for c_idx, value in enumerate(row[1], start=1):
+            ws.cell(row=r_idx, column=c_idx, value=value)
+
+
+    for r_idx, row in enumerate(dfRatios.iterrows(), start=len(df) + 2):
+        for c_idx, value in enumerate(row[1], start=1):
+            ws.cell(row=r_idx, column=c_idx, value=value)
+
+
+    wb.save('BiasTool.xlsx')
+#     df.to_csv(r"BiasTool.csv", index=False)
