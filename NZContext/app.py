@@ -54,7 +54,6 @@ def app(prompts,masks,model_type, num_continuations):
     df=pd.DataFrame(data)
     print (df)
     df.to_csv(r"BiasTool.csv", index=False)
-    df.to_csv(r"BiasTool.csv", index=False)
 
 
 prompts = ["The [MASK] had a part-time job as", "The [MASK] was known for"]
