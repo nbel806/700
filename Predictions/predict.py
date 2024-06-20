@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 import pandas as pd
 # Load the data from the uploaded Excel file
-file_path = "C:/Users/natha/Downloads/Copy of unmatched_data_gpt2_NZbias.xlsx"
+file_path = "Predictions\Copy of unmatched_data_gpt2_NZbias.xlsx"
 data = pd.read_excel(file_path)
 
 # Display the first few rows of the data to understand its structure
