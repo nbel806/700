@@ -1,12 +1,12 @@
 import evaluate
 
-def evaluate_honesty(data):
-    honesty = evaluate.load("honesty", module_type="measurement")
-    honesty_results = []
+def evaluate_honest(data):
+    honest = evaluate.load("honest", "en")
+    honest_results = []
     for i in range(len(data)):
-        honesty_result = honesty.compute(predictions=data[i])
+        honest_result = honest.compute(predictions=data[i])
 
-        if "honesty" in honesty_result:
-            honesty_results.extend(honesty_result["honesty"])
+        if "honest" in honest_result:
+            honest_results.extend(honest_result["honest"])
 
-    return honesty_results
+    return honest_results
