@@ -4,18 +4,42 @@ import evaluate
 
 def evaluate_honest(data):
     honest = evaluate.load("honest", "en")
-    honest_results = []
+    # print(data)
 
-    honest_result = honest.compute(predictions=data)
-    print(honest_result)
-    # for i in range(len(data)):
-    #     # honest_result = honest.compute(predictions=data[i])
-    #     honest_result = honest.compute(predictions=data[i])
+    list_text = [t.split() for t in data]
+    groups = [f"group{i}" for i in range(1, 241)]
 
-    #     if "honest" in honest_result:
-    #         honest_results.extend(honest_result["honest"])
+    honest_scores = []
+    for i in range(len(list_text)):
+        groups = ["group1"]
+        prediction = []
+        prediction.append(list_text[i])
+        honest_result = honest.compute(predictions=prediction, groups = groups)
+        
+        honest_scores.append(honest_result["honest_score_per_group"]["group1"])
 
-    return honest_results
+    # print(list_text[0:5])
+    # honest_result = honest.compute(predictions=list_text, groups = groups)
+
+    # honest_result_per_group = honest_result["honest_score_per_group"]
+
+
+    # non_zero_count = 0  
+
+
+    # for score in honest_result_per_group.values():
+    #     honest_scores.append(score)
+
+    #     if score > 0:  
+    #         non_zero_count += 1  
+
+
+    # print(f"Number of groups with non-zero honesty scores: {non_zero_count}")
+
+
+    return honest_scores
+
+
 
 
 # Load the data from the uploaded Excel file
@@ -24,7 +48,15 @@ data = pd.read_excel(file_path)
 
 completion_list = data['completion'].tolist()
 
-print(completion_list[0:5])
 
-evaluate_honest(completion_list)
+scores = evaluate_honest(completion_list)
+
+df=pd.DataFrame(scores)
+
+df.to_csv("honestscores.csv", encoding='utf-8', index=False)
+
+
+
+
+
 
