@@ -1,6 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Card, Typography } from "@mui/material";
 
 export default function About() {
-  return <h1>About</h1>;
+  return (
+    <>
+      <Card>
+        <Typography variant="h1">About</Typography>
+      </Card>
+    </>
+  );
 }
