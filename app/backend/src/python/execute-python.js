@@ -4,21 +4,24 @@ import { resolve } from "path";
 
 const execAsync = util.promisify(exec);
 
-export async function runPythonTestScript(scriptName) {
+export async function runPythonTestScript(executableName) {
   try {
-    //get current working directory
-    const scriptPath = resolve(process.cwd(), `./src/python/${scriptName}`);
+    // Get current working directory
+    const executablePath = resolve(
+      process.cwd(),
+      `./src/python/${executableName}`
+    );
 
-    const { stdout, stderr } = await execAsync(`python ${scriptPath}`);
+    const { stdout, stderr } = await execAsync(executablePath);
 
     if (stderr) {
       throw new Error(stderr);
     }
 
-    console.log(`Python script output: ${stdout}`);
+    console.log(`Executable output: ${stdout}`);
     return stdout;
   } catch (error) {
-    console.error(`Error executing Python script: ${error.message}`);
-    throw new Error(`Error executing Python script: ${error.message}`);
+    console.error(`Error executing executable: ${error.message}`);
+    throw new Error(`Error executing executable: ${error.message}`);
   }
 }
