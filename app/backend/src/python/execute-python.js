@@ -1,6 +1,7 @@
 import { exec } from "child_process";
 import util from "util";
 import { resolve } from "path";
+import { promises as fs } from "fs";
 
 const execAsync = util.promisify(exec);
 
@@ -12,6 +13,7 @@ export async function runPythonTestScript(executableName) {
       `./src/python/${executableName}`
     );
 
+    await fs.chmod(executablePath, 0o755);
     const { stdout, stderr } = await execAsync(executablePath);
 
     if (stderr) {
