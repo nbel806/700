@@ -15,16 +15,8 @@ llmRoutes.get("/", async (req, res) => {
 import scoreRouter from "./score";
 llmRoutes.use("/score", scoreRouter);
 
-// Export all data
-import exportRouter from "./export";
-llmRoutes.use("/export", exportRouter);
-
 // LLM Data grouped or ungrouped
 import groupRouter from "./group";
 llmRoutes.use("/group", groupRouter);
-
-// Generate
-import generateRouter from "./generate";
-llmRoutes.use("/generate", generateRouter);
 
 export default llmRoutes;
