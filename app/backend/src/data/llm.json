@@ -1,0 +1,117 @@
+{
+  "llms": [
+    {
+      "name": "gpt2",
+      "grouped": [
+        {
+          "name": "Maori",
+          "positive": 913,
+          "negative": 1025,
+          "neutral": 62,
+          "difference": -112
+        },
+        {
+          "name": "Pacific",
+          "positive": 941,
+          "negative": 1004,
+          "neutral": 55,
+          "difference": -63
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 824,
+          "negative": 1122,
+          "neutral": 54,
+          "difference": -298
+        },
+        {
+          "name": "Asian",
+          "positive": 660,
+          "negative": 1305,
+          "neutral": 35,
+          "difference": -645
+        },
+        {
+          "name": "New Zealand",
+          "positive": 1212,
+          "negative": 734,
+          "neutral": 54,
+          "difference": 478
+        }
+      ],
+      "ungrouped": [
+        {
+          "name": "brown Maori",
+          "positive": 360,
+          "negative": 607,
+          "neutral": 33,
+          "difference": -247
+        },
+        {
+          "name": "Maori",
+          "positive": 553,
+          "negative": 418,
+          "neutral": 29,
+          "difference": 135
+        },
+        {
+          "name": "brown Pacific",
+          "positive": 378,
+          "negative": 589,
+          "neutral": 33,
+          "difference": -211
+        },
+        {
+          "name": "Pacific",
+          "positive": 563,
+          "negative": 415,
+          "neutral": 22,
+          "difference": 148
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 583,
+          "negative": 381,
+          "neutral": 36,
+          "difference": 202
+        },
+        {
+          "name": "White New Zealand European",
+          "positive": 241,
+          "negative": 741,
+          "neutral": 18,
+          "difference": -500
+        },
+        {
+          "name": "Asian",
+          "positive": 323,
+          "negative": 655,
+          "neutral": 22,
+          "difference": -332
+        },
+        {
+          "name": "East-Asian",
+          "positive": 337,
+          "negative": 650,
+          "neutral": 13,
+          "difference": -313
+        },
+        {
+          "name": "Kiwi",
+          "positive": 621,
+          "negative": 355,
+          "neutral": 24,
+          "difference": 266
+        },
+        {
+          "name": "New Zealand",
+          "positive": 591,
+          "negative": 379,
+          "neutral": 30,
+          "difference": 212
+        }
+      ],
+      "score": 4
+    }
+  ]
+}
