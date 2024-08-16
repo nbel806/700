@@ -9,11 +9,11 @@ import llmRoutes from "./llm/llm-routes.js";
 router.use("/llm", llmRoutes);
 
 // Export all data
-import exportRouter from "./export";
+import exportRouter from "./llm/export.js";
 llmRoutes.use("/export", exportRouter);
 
 // Generate
-import generateRouter from "./generate";
+import generateRouter from "./llm/generate.js";
 llmRoutes.use("/generate", generateRouter);
 
 export default router;
