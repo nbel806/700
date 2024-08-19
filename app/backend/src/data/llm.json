@@ -1,0 +1,230 @@
+{
+  "llms": [
+    {
+      "name": "gpt2",
+      "grouped": [
+        {
+          "name": "Maori",
+          "positive": 913,
+          "negative": 1025,
+          "neutral": 62,
+          "difference": -112
+        },
+        {
+          "name": "Pacific",
+          "positive": 941,
+          "negative": 1004,
+          "neutral": 55,
+          "difference": -63
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 824,
+          "negative": 1122,
+          "neutral": 54,
+          "difference": -298
+        },
+        {
+          "name": "Asian",
+          "positive": 660,
+          "negative": 1305,
+          "neutral": 35,
+          "difference": -645
+        },
+        {
+          "name": "New Zealand",
+          "positive": 1212,
+          "negative": 734,
+          "neutral": 54,
+          "difference": 478
+        }
+      ],
+      "ungrouped": [
+        {
+          "name": "brown Maori",
+          "positive": 360,
+          "negative": 607,
+          "neutral": 33,
+          "difference": -247
+        },
+        {
+          "name": "Maori",
+          "positive": 553,
+          "negative": 418,
+          "neutral": 29,
+          "difference": 135
+        },
+        {
+          "name": "brown Pacific",
+          "positive": 378,
+          "negative": 589,
+          "neutral": 33,
+          "difference": -211
+        },
+        {
+          "name": "Pacific",
+          "positive": 563,
+          "negative": 415,
+          "neutral": 22,
+          "difference": 148
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 583,
+          "negative": 381,
+          "neutral": 36,
+          "difference": 202
+        },
+        {
+          "name": "White New Zealand European",
+          "positive": 241,
+          "negative": 741,
+          "neutral": 18,
+          "difference": -500
+        },
+        {
+          "name": "Asian",
+          "positive": 323,
+          "negative": 655,
+          "neutral": 22,
+          "difference": -332
+        },
+        {
+          "name": "East-Asian",
+          "positive": 337,
+          "negative": 650,
+          "neutral": 13,
+          "difference": -313
+        },
+        {
+          "name": "Kiwi",
+          "positive": 621,
+          "negative": 355,
+          "neutral": 24,
+          "difference": 266
+        },
+        {
+          "name": "New Zealand",
+          "positive": 591,
+          "negative": 379,
+          "neutral": 30,
+          "difference": 212
+        }
+      ],
+      "score": 4
+    },
+    {
+      "name": "bert",
+      "grouped": [
+        {
+          "name": "Maori",
+          "positive": 901,
+          "negative": 1038,
+          "neutral": 61,
+          "difference": -137
+        },
+        {
+          "name": "Pacific",
+          "positive": 836,
+          "negative": 1098,
+          "neutral": 66,
+          "difference": -262
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 998,
+          "negative": 953,
+          "neutral": 49,
+          "difference": 45
+        },
+        {
+          "name": "Asian",
+          "positive": 804,
+          "negative": 1143,
+          "neutral": 53,
+          "difference": -339
+        },
+        {
+          "name": "New Zealand",
+          "positive": 1080,
+          "negative": 866,
+          "neutral": 54,
+          "difference": 212
+        }
+      ],
+      "ungrouped": [
+        {
+          "name": "brown Maori",
+          "positive": 382,
+          "negative": 588,
+          "neutral": 30,
+          "difference": -206
+        },
+        {
+          "name": "Maori",
+          "positive": 519,
+          "negative": 450,
+          "neutral": 31,
+          "difference": 69
+        },
+        {
+          "name": "brown Pacific",
+          "positive": 411,
+          "negative": 551,
+          "neutral": 38,
+          "difference": -140
+        },
+        {
+          "name": "Pacific",
+          "positive": 425,
+          "negative": 547,
+          "neutral": 28,
+          "difference": -122
+        },
+        {
+          "name": "New Zealand European",
+          "positive": 654,
+          "negative": 318,
+          "neutral": 28,
+          "difference": 336
+        },
+        {
+          "name": "White New Zealand European",
+          "positive": 344,
+          "negative": 635,
+          "neutral": 21,
+          "difference": -291
+        },
+        {
+          "name": "Asian",
+          "positive": 452,
+          "negative": 522,
+          "neutral": 26,
+          "difference": -70
+        },
+        {
+          "name": "East-Asian",
+          "positive": 352,
+          "negative": 621,
+          "neutral": 27,
+          "difference": -269
+        },
+        {
+          "name": "Kiwi",
+          "positive": 565,
+          "negative": 402,
+          "neutral": 33,
+          "difference": 163
+        },
+        {
+          "name": "New Zealand",
+          "positive": 515,
+          "negative": 464,
+          "neutral": 21,
+          "difference": 51
+        }
+      ],
+      "score": 5
+    }
+  ]
+}
