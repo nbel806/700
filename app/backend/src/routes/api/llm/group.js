@@ -6,12 +6,17 @@ import {
 } from "../../../data/data.js";
 const groupRouter = Router();
 
-// GET /api/llm/group/:llm
+// GET /api/llm/group/:llm/:grouped?
 // What demographic groups exist for an LLM?
-groupRouter.get("/:llm", async (req, res) => {
-  const { llm } = req.params;
+groupRouter.get("/:llm/:grouped?", async (req, res) => {
+  const { llm, grouped } = req.params;
+
+  // Convert 'grouped' parameter to a boolean
+  const isGrouped =
+    grouped !== undefined ? grouped.toLowerCase() === "true" : true;
+
   try {
-    const groups = getDemographicGroups(llm);
+    const groups = getDemographicGroups(llm, isGrouped);
     res.status(200).json(groups);
   } catch (error) {
     console.log(error);

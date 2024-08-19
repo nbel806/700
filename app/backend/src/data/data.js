@@ -15,20 +15,28 @@ const getLLMNames = () => {
 
   return llmNames;
 };
+
 /**
  * Retrieves a list of demographic groups for a given LLM.
  *
  * @param {string} llmName - The name of the LLM to retrieve demographic groups for
+ * @param {boolean} isGrouped - Whether to get grouped (true) or ungrouped (false) demographic groups
  * @return {object[]} An array of objects containing demographic group names
  */
-const getDemographicGroups = (llmName) => {
+const getDemographicGroups = (llmName, isGrouped) => {
   var demographicGroups = [];
   const llm = data.llms.find((llm) => {
     return llm.name === llmName;
   });
-  llm.grouped.forEach((group) => {
-    demographicGroups.push(group.name);
-  });
+  if (isGrouped) {
+    llm.grouped.forEach((group) => {
+      demographicGroups.push(group.name);
+    });
+  } else {
+    llm.ungrouped.forEach((group) => {
+      demographicGroups.push(group.name);
+    });
+  }
 
   return demographicGroups;
 };
