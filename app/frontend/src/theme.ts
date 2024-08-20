@@ -31,6 +31,7 @@ const theme = createTheme({
     },
     divider: "#7F8C8D",
   },
+  spacing: 8,
 });
 
 export default theme;
