@@ -11,6 +11,9 @@ const openSans = Open_Sans({
 const theme = createTheme({
   typography: {
     fontFamily: openSans.style.fontFamily,
+    button: {
+      textTransform: "none",
+    },
   },
   palette: {
     mode: "light",
