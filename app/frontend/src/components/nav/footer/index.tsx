@@ -1,18 +1,29 @@
 import React from "react";
 import Link from "next/link";
-import { Card, Typography } from "@mui/material";
+import { Box, Card, Container, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <>
-      <Card>
-        <Typography variant="h6">
-          University of Auckland Part IV Project
+    <Container
+      sx={{
+        minWidth: "100vw",
+        backgroundColor: "primary.main",
+        color: "primary.contrastText",
+      }}
+      style={{ padding: 32 }}
+    >
+      <Box>
+        <Typography variant="h6" fontWeight={"bold"}>
+          University of Auckland Part IV Project #119
         </Typography>
+      </Box>
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", padding: 8 }}
+      >
         <Typography variant="h6">Nathan Bell and Troy Murdoch</Typography>
-        <Typography variant="h6">© 2023</Typography>
-      </Card>
-    </>
+        <Typography variant="h6">©2024</Typography>
+      </Box>
+    </Container>
   );
 };
 
