@@ -1,6 +1,5 @@
 import React from "react";
-import Link from "next/link";
-import { Box, Card, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -10,18 +9,21 @@ const Footer = () => {
         backgroundColor: "primary.main",
         color: "primary.contrastText",
       }}
-      style={{ padding: 32 }}
+      style={{ padding: 10 }}
     >
-      <Box>
-        <Typography variant="h6" fontWeight={"bold"}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        <Typography variant="h7" fontWeight={"bold"}>
           University of Auckland Part IV Project #119
         </Typography>
-      </Box>
-      <Box
-        sx={{ display: "flex", justifyContent: "space-between", padding: 8 }}
-      >
-        <Typography variant="h6">Nathan Bell and Troy Murdoch</Typography>
-        <Typography variant="h6">©2024</Typography>
+        <Typography variant="h7">Nathan Bell and Troy Murdoch</Typography>
+        <Typography variant="h7">©2024</Typography>
       </Box>
     </Container>
   );
