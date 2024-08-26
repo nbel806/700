@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Typography, Box, Button } from "@mui/material";
+import Link from "next/link";
 
 export default function GenerateArea() {
   return (
@@ -26,7 +27,11 @@ export default function GenerateArea() {
       >
         Generate your own data
       </Typography>
-      <Button>Generate</Button>
+      <Link href="/generate" passHref>
+        <Button variant="contained" color="primary">
+          Generate
+        </Button>
+      </Link>
     </Box>
   );
 }
