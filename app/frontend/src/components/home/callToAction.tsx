@@ -1,11 +1,10 @@
-import { Container, Typography, Button } from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
 
 export default function CallToAction() {
   return (
-    <Container
+    <Box
       style={{
-        minHeight: "80vh",
-        minWidth: "100vw",
+        height: "70%",
         padding: 8,
         display: "flex",
         flexDirection: "column",
@@ -34,6 +33,6 @@ export default function CallToAction() {
           Get started
         </Typography>
       </Button>
-    </Container>
+    </Box>
   );
 }

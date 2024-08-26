@@ -107,7 +107,7 @@ export default function Tool() {
           <Box
             style={{
               height: "100%",
-              overflowY: "scroll",
+              overflowY: "auto",
               display: "flex",
               flexDirection: "column",
             }}
@@ -124,7 +124,7 @@ export default function Tool() {
               />
             </Box>
             <Box
-              flex="2"
+              flex="3"
               style={{ backgroundColor: "#c0c0c0", padding: "3vh" }}
             >
               <LLMGroups
