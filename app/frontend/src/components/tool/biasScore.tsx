@@ -78,7 +78,7 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
         height: "100%",
         position: "relative",
       }}
-      style={{ padding: "30px" }}
+      style={{ padding: "20px" }}
     >
       <EmojiEventsIcon fontSize="large" color="primary" />
 
