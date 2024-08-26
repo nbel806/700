@@ -44,7 +44,7 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
       const response = await axios.get(
         `http://localhost:3000/api/llm/score/${llm}`
       );
-      setScore(response.data.score); // Assuming the response data has a `score` field
+      setScore(response.data.score);
     } catch (error) {
       console.error(`Error fetching bias score for ${llm}:`, error);
       setError(`Error fetching score for ${llm}`);
@@ -80,18 +80,13 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
       }}
       style={{ padding: "30px" }}
     >
-      <EmojiEventsIcon
-        fontSize="large"
-        color="primary"
-        style={{ marginBottom: "3vh" }}
-      />
+      <EmojiEventsIcon fontSize="large" color="primary" />
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
-          marginBottom: "2vh",
         }}
       >
         <Typography

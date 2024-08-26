@@ -5,7 +5,7 @@ import { Grid, Box, Typography } from "@mui/material";
 import LLMCompare from "@/components/tool/llmCompare";
 import LLMGroups from "@/components/tool/llmGroups";
 import BiasScore from "@/components/tool/biasScore";
-import GenerateArea from "@/components/tool/generateArea";
+// import GenerateArea from "@/components/tool/generateArea";
 import axios from "axios";
 
 interface Group {
@@ -32,7 +32,6 @@ export default function Tool() {
       const response = await axios.get(
         `http://localhost:3000/api/llm/group/${llm}/true`
       );
-      // Assuming response data is an array of group names
       setGroups(
         response.data.map((group: any) => ({ name: group, checked: false }))
       );
@@ -77,7 +76,7 @@ export default function Tool() {
   };
 
   return (
-    <Box style={{ height: "100vh" }}>
+    <Box style={{ height: "100%" }}>
       <Grid container style={{ height: "100%" }}>
         {/* Left Side - Split into Top and Bottom */}
         <Grid
@@ -89,10 +88,7 @@ export default function Tool() {
         >
           <Box flex="3" style={{ backgroundColor: "#f0f0f0", padding: "3vh" }}>
             <Typography variant="h1" color={"primary.main"}>
-              Top Section (Left)
-            </Typography>
-            <Typography variant="body1" color={"primary.main"}>
-              This top section occupies 3 parts of the height of the left side.
+              Graph
             </Typography>
           </Box>
           <Box flex="1" style={{ backgroundColor: "#e0e0e0", padding: "3vh" }}>
@@ -106,24 +102,42 @@ export default function Tool() {
           xs={3}
           container
           direction="column"
-          style={{ height: "100%" }}
+          style={{ height: "100%", overflow: "hidden" }}
         >
-          <Box flex="1" style={{ backgroundColor: "#d0d0d0", padding: "3vh" }}>
-            <LLMCompare
-              llm1={llm1}
-              setLlm1={setLlm1}
-              llm2={llm2}
-              setLlm2={setLlm2}
-            />
-          </Box>
-          <Box flex="2" style={{ backgroundColor: "#c0c0c0", padding: "3vh" }}>
-            <LLMGroups
-              llmGroupsFinal={llmGroupsFinal}
-              onCheckChange={handleCheckChange}
-            />
-          </Box>
-          <Box flex="1" style={{ backgroundColor: "#b0b0b0", padding: "3vh" }}>
-            <GenerateArea />
+          <Box
+            style={{
+              height: "100%",
+              overflowY: "scroll",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Box
+              flex="1"
+              style={{ backgroundColor: "#d0d0d0", padding: "3vh" }}
+            >
+              <LLMCompare
+                llm1={llm1}
+                setLlm1={setLlm1}
+                llm2={llm2}
+                setLlm2={setLlm2}
+              />
+            </Box>
+            <Box
+              flex="2"
+              style={{ backgroundColor: "#c0c0c0", padding: "3vh" }}
+            >
+              <LLMGroups
+                llmGroupsFinal={llmGroupsFinal}
+                onCheckChange={handleCheckChange}
+              />
+            </Box>
+            {/* <Box
+              flex="1"
+              style={{ backgroundColor: "#b0b0b0", padding: "3vh" }}
+            >
+              <GenerateArea />
+            </Box> */}
           </Box>
         </Grid>
       </Grid>
