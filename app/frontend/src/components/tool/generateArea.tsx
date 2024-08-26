@@ -23,6 +23,7 @@ export default function GenerateArea() {
       <Typography
         variant="h5"
         gutterBottom
+        color="primary"
         sx={{ fontWeight: "bold", mt: "2px" }}
       >
         Generate your own data

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Typography } from "@mui/material";
 import LLMCompare from "@/components/tool/llmCompare";
 import LLMGroups from "@/components/tool/llmGroups";
 import BiasScore from "@/components/tool/biasScore";
@@ -88,10 +88,12 @@ export default function Tool() {
           style={{ height: "100%" }}
         >
           <Box flex="3" style={{ backgroundColor: "#f0f0f0", padding: "3vh" }}>
-            <h1>Top Section (Left)</h1>
-            <p>
+            <Typography variant="h1" color={"primary.main"}>
+              Top Section (Left)
+            </Typography>
+            <Typography variant="body1" color={"primary.main"}>
               This top section occupies 3 parts of the height of the left side.
-            </p>
+            </Typography>
           </Box>
           <Box flex="1" style={{ backgroundColor: "#e0e0e0", padding: "3vh" }}>
             <BiasScore llm1={llm1} llm2={llm2} />

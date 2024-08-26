@@ -35,6 +35,7 @@ export default function LLMGroups({
       <Typography
         variant="h4"
         gutterBottom
+        color="primary"
         sx={{ fontWeight: "bold", mt: "2px" }}
         style={{ marginBottom: "16px" }}
       >
@@ -61,7 +62,11 @@ export default function LLMGroups({
               }}
             >
               <Box>
-                <Typography variant="body1" sx={{ fontSize: "1.5rem" }}>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  sx={{ fontSize: "1.5rem" }}
+                >
                   {group.name}
                 </Typography>
               </Box>
@@ -73,7 +78,9 @@ export default function LLMGroups({
             </ListItem>
           ))
         ) : (
-          <Typography variant="body1">Loading Groups ...</Typography>
+          <Typography variant="body1" color="primary">
+            Loading Groups ...
+          </Typography>
         )}
       </List>
     </Box>

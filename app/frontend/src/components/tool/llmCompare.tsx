@@ -59,7 +59,7 @@ export default function LLMCompare({
 
   return (
     <Box sx={{ width: "100%", maxWidth: 600, mx: "auto" }}>
-      {loading && <Typography>Loading LLMs...</Typography>}
+      {loading && <Typography color="primary">Loading LLMs...</Typography>}
       {error && <Typography color="error">{error}</Typography>}
       {!loading && !error && (
         <>
@@ -71,7 +71,9 @@ export default function LLMCompare({
               mb: 2,
             }}
           >
-            <Typography variant="h6">LLM 1</Typography>
+            <Typography variant="h6" color="primary">
+              LLM 1
+            </Typography>
             <Box
               sx={{
                 display: "flex",
@@ -105,7 +107,9 @@ export default function LLMCompare({
           </Box>
 
           <Box sx={{ textAlign: "center", my: 2 }}>
-            <Typography variant="h6">vs</Typography>
+            <Typography color="primary" variant="h6">
+              vs
+            </Typography>
           </Box>
 
           <Box
@@ -115,7 +119,9 @@ export default function LLMCompare({
               alignItems: "stretch",
             }}
           >
-            <Typography variant="h6">LLM 2</Typography>
+            <Typography variant="h6" color="primary">
+              LLM 2
+            </Typography>
             <Box
               sx={{
                 display: "flex",

@@ -80,7 +80,11 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
       }}
       style={{ padding: "30px" }}
     >
-      <EmojiEventsIcon fontSize="large" style={{ marginBottom: "3vh" }} />
+      <EmojiEventsIcon
+        fontSize="large"
+        color="primary"
+        style={{ marginBottom: "3vh" }}
+      />
 
       <Box
         sx={{
@@ -90,13 +94,25 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
           marginBottom: "2vh",
         }}
       >
-        <Typography variant="h6" sx={{ flex: 1, textAlign: "center" }}>
+        <Typography
+          variant="h6"
+          color="primary"
+          sx={{ flex: 1, textAlign: "center" }}
+        >
           {llm1 || ""}
         </Typography>
-        <Typography variant="h6" sx={{ flex: 1, textAlign: "center" }}>
+        <Typography
+          variant="h6"
+          color="primary"
+          sx={{ flex: 1, textAlign: "center" }}
+        >
           Bias Score
         </Typography>
-        <Typography variant="h6" sx={{ flex: 1, textAlign: "center" }}>
+        <Typography
+          variant="h6"
+          color="primary"
+          sx={{ flex: 1, textAlign: "center" }}
+        >
           {llm2 || ""}
         </Typography>
       </Box>
@@ -110,23 +126,27 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
       >
         <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
           {loading ? (
-            <Typography>Loading...</Typography>
+            <Typography color="primary">Loading...</Typography>
           ) : llm1Score !== null ? (
             <Rating value={llm1Score} precision={0.1} readOnly />
           ) : (
-            <Typography>Loading LLM1</Typography>
+            <Typography color="primary">Loading LLM1</Typography>
           )}
         </Box>
-        <Typography variant="body1" sx={{ flex: 1, textAlign: "center" }}>
+        <Typography
+          variant="body1"
+          color="primary"
+          sx={{ flex: 1, textAlign: "center" }}
+        >
           vs
         </Typography>
         <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
           {loading ? (
-            <Typography>Loading...</Typography>
+            <Typography color="primary">Loading...</Typography>
           ) : llm2Score !== null ? (
             <Rating value={llm2Score} precision={0.1} readOnly />
           ) : (
-            <Typography>Loading LLM2</Typography>
+            <Typography color="primary">Loading LLM2</Typography>
           )}
         </Box>
       </Box>
@@ -143,7 +163,7 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
       <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogTitle>Score Information</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">
+          <Typography variant="body1" color="primary">
             We calculate our LLM bias score by comparing demographic groups. If
             each demographic group has a similar number of positive and negative
             continuations, then the LLM will receive a high score. For more
