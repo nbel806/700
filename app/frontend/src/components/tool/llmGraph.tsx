@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { Box } from "@mui/material";
+import { Box, IconButton, Tooltip as MuiTooltip } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -123,8 +124,10 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         position: "top" as const,
         labels: {
           font: {
+            family: "Arial" as const,
             size: 18,
-            weight: "bold",
+            style: "normal" as const,
+            weight: "bold" as const,
           },
           padding: 20,
         },
@@ -133,8 +136,10 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         display: true,
         text: "Comparison of continuation difference between LLMs",
         font: {
+          family: "Arial" as const,
           size: 30,
-          weight: "bold",
+          style: "normal" as const,
+          weight: "bold" as const,
         },
         padding: {
           top: 20,
@@ -149,20 +154,26 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
           display: true,
           text: "Difference (Number of Positive Continuation - Negative Continuation)",
           font: {
+            family: "Arial" as const,
             size: 16,
-            weight: "bold",
+            style: "normal" as const,
+            weight: "bold" as const,
           },
         },
         ticks: {
           font: {
-            size: 20,
+            family: "Arial" as const,
+            size: 16,
+            style: "normal" as const,
           },
         },
       },
       x: {
         ticks: {
           font: {
+            family: "Arial" as const,
             size: 20,
+            style: "normal" as const,
           },
         },
         grid: {
@@ -172,8 +183,10 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
           display: true,
           text: "Demographic Groups",
           font: {
+            family: "Arial" as const,
             size: 24,
-            weight: "bold",
+            style: "normal" as const,
+            weight: "bold" as const,
           },
         },
       },
@@ -183,13 +196,29 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "center",
+        position: "relative",
         width: "100%",
         height: "100%",
+        bgcolor: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       {loading ? <p>Loading...</p> : <Bar data={data} options={options} />}
+      <MuiTooltip title="Information about the chart">
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            color: "gray",
+          }}
+          aria-label="info"
+        >
+          <InfoIcon />
+        </IconButton>
+      </MuiTooltip>
     </Box>
   );
 }
