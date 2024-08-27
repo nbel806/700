@@ -149,7 +149,7 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
         </Box>
       </Box>
 
-      <Tooltip title="Information about the chart">
+      <Tooltip title="Information about the score">
         <IconButton
           sx={{
             position: "absolute",
