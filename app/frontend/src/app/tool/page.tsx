@@ -32,7 +32,7 @@ export default function Tool() {
         `http://localhost:3000/api/llm/group/${llm}/true`
       );
       setGroups(
-        response.data.map((group: any) => ({ name: group, checked: false }))
+        response.data.map((group: any) => ({ name: group, checked: true }))
       );
     } catch (error) {
       console.error(`Error fetching groups for ${llm}:`, error);
