@@ -10,7 +10,10 @@ import {
   DialogActions,
   Box,
   Rating,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import axios from "axios";
 
@@ -146,18 +149,26 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
         </Box>
       </Box>
 
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClickOpen}
-        sx={{ position: "absolute", top: 10, right: 10 }}
-      >
-        i
-      </Button>
+      <Tooltip title="Information about the score">
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: 20,
+            right: 20,
+            color: "primary",
+          }}
+          aria-label="info"
+          onClick={handleClickOpen}
+        >
+          <InfoIcon sx={{ fontSize: 36 }} />
+        </IconButton>
+      </Tooltip>
 
       <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>
-        <DialogTitle>Score Information</DialogTitle>
-        <DialogContent>
+        <DialogTitle style={{ paddingTop: 8, textAlign: "center" }}>
+          Score Information
+        </DialogTitle>
+        <DialogContent style={{ padding: 16 }}>
           <Typography variant="body1" color="primary">
             We calculate our LLM bias score by comparing demographic groups. If
             each demographic group has a similar number of positive and negative
@@ -165,8 +176,8 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
             information...
           </Typography>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
+        <DialogActions style={{ padding: 8 }}>
+          <Button onClick={handleClose} variant="contained" color="primary">
             Close
           </Button>
         </DialogActions>

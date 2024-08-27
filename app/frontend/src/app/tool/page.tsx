@@ -7,21 +7,21 @@ import LLMGroups from "@/components/tool/llmGroups";
 import BiasScore from "@/components/tool/biasScore";
 // import GenerateArea from "@/components/tool/generateArea";
 import axios from "axios";
+import LLMGraph from "@/components/tool/llmGraph";
 
-interface Group {
+export interface Group {
   name: string;
   checked: boolean;
 }
 
 export default function Tool() {
-  const [llm1, setLlm1] = useState<string>("");
-  const [llm2, setLlm2] = useState<string>("");
+  const [llm1, setLlm1] = useState<string>("gpt2");
+  const [llm2, setLlm2] = useState<string>("bert");
   const [llm1Groups, setLlm1Groups] = useState<Group[]>([]);
   const [llm2Groups, setLlm2Groups] = useState<Group[]>([]);
   const [llmGroupsFinal, setLlmGroupsFinal] = useState<Group[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
-  console.log(llmGroupsFinal);
 
   const fetchGroups = async (
     llm: string,
@@ -87,9 +87,7 @@ export default function Tool() {
           style={{ height: "100%" }}
         >
           <Box flex="3" style={{ backgroundColor: "#f0f0f0", padding: "3vh" }}>
-            <Typography variant="h1" color={"primary.main"}>
-              Graph
-            </Typography>
+            <LLMGraph llm1={llm1} llm2={llm2} llmGroups={llmGroupsFinal} />
           </Box>
           <Box flex="1" style={{ backgroundColor: "#e0e0e0", padding: "3vh" }}>
             <BiasScore llm1={llm1} llm2={llm2} />
