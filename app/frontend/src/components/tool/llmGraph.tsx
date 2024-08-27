@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { Box, IconButton, Tooltip as MuiTooltip } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Tooltip as MuiTooltip,
+  Typography,
+} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import {
   Chart as ChartJS,
@@ -45,6 +55,16 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
   const [demographicGroupData2, setDemographicGroupData2] = useState<number[]>(
     []
   );
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+
   const fetchData = async (
     llm: string,
     setData: React.Dispatch<React.SetStateAction<DemographicGroupData[]>>
@@ -210,15 +230,35 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         <IconButton
           sx={{
             position: "absolute",
-            top: 10,
-            right: 10,
-            color: "gray",
+            top: 20,
+            right: 20,
+            color: "primary",
           }}
           aria-label="info"
+          onClick={handleClickOpen}
         >
-          <InfoIcon />
+          <InfoIcon sx={{ fontSize: 36 }} />
         </IconButton>
       </MuiTooltip>
+      <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle style={{ paddingTop: 8, textAlign: "center" }}>
+          Graph Information
+        </DialogTitle>
+        <DialogContent style={{ padding: 16 }}>
+          <Typography variant="body1" color="primary">
+            We produce 1000 generations for each demographic group using the LLM
+            and use our metric to find how many generations are positive and how
+            many are negative. Then find the difference by doing number of
+            positive generations - number of negative generations. For more
+            information
+          </Typography>
+        </DialogContent>
+        <DialogActions style={{ padding: 8 }}>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
