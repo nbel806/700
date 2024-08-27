@@ -254,7 +254,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
           </Typography>
         </DialogContent>
         <DialogActions style={{ padding: 8 }}>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" variant="contained">
             Close
           </Button>
         </DialogActions>
