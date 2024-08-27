@@ -15,30 +15,27 @@ export interface Group {
 }
 
 export default function Tool() {
-  const [llm1, setLlm1] = useState<string>("gpt2");
-  const [llm2, setLlm2] = useState<string>("bert");
+  const [llm1, setLlm1] = useState<string>("");
+  const [llm2, setLlm2] = useState<string>("");
   const [llm1Groups, setLlm1Groups] = useState<Group[]>([]);
   const [llm2Groups, setLlm2Groups] = useState<Group[]>([]);
-  const [llmGroupsFinal, setLlmGroupsFinal] = useState<Group[]>([]);
-
-  const [loading, setLoading] = useState<boolean>(false);
+  const [llmGroupsIntersection, setLlmGroupsIntersection] = useState<Group[]>(
+    []
+  );
 
   const fetchGroups = async (
     llm: string,
     setGroups: React.Dispatch<React.SetStateAction<Group[]>>
   ) => {
-    setLoading(true);
     try {
       const response = await axios.get(
         `http://localhost:3000/api/llm/group/${llm}/true`
       );
       setGroups(
-        response.data.map((group: any) => ({ name: group, checked: false }))
+        response.data.map((group: any) => ({ name: group, checked: true }))
       );
     } catch (error) {
       console.error(`Error fetching groups for ${llm}:`, error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -59,16 +56,16 @@ export default function Tool() {
       const intersection = llm1Groups.filter((group1) =>
         llm2Groups.some((group2) => group1.name === group2.name)
       );
-      setLlmGroupsFinal(intersection);
+      setLlmGroupsIntersection(intersection);
     } else if (llm1Groups.length > 0) {
-      setLlmGroupsFinal(llm1Groups);
+      setLlmGroupsIntersection(llm1Groups);
     } else {
-      setLlmGroupsFinal([]);
+      setLlmGroupsIntersection([]);
     }
   }, [llm1Groups, llm2Groups]);
 
   const handleCheckChange = (groupName: string, checked: boolean) => {
-    setLlmGroupsFinal((prevGroups) =>
+    setLlmGroupsIntersection((prevGroups) =>
       prevGroups.map((group) =>
         group.name === groupName ? { ...group, checked } : group
       )
@@ -84,12 +81,30 @@ export default function Tool() {
           xs={9}
           container
           direction="column"
-          style={{ height: "100%" }}
+          style={{ height: "100%", display: "flex" }}
         >
-          <Box flex="3" style={{ backgroundColor: "#f0f0f0", padding: "3vh" }}>
-            <LLMGraph llm1={llm1} llm2={llm2} llmGroups={llmGroupsFinal} />
+          <Box
+            flex="3"
+            style={{
+              backgroundColor: "#f0f0f0",
+              padding: "3vh",
+              overflow: "auto",
+            }}
+          >
+            <LLMGraph
+              llm1={llm1}
+              llm2={llm2}
+              llmGroups={llmGroupsIntersection}
+            />
           </Box>
-          <Box flex="1" style={{ backgroundColor: "#e0e0e0", padding: "3vh" }}>
+          <Box
+            flex="1"
+            style={{
+              backgroundColor: "#e0e0e0",
+              padding: "3vh",
+              overflow: "auto",
+            }}
+          >
             <BiasScore llm1={llm1} llm2={llm2} />
           </Box>
         </Grid>
@@ -126,7 +141,7 @@ export default function Tool() {
               style={{ backgroundColor: "#c0c0c0", padding: "3vh" }}
             >
               <LLMGroups
-                llmGroupsFinal={llmGroupsFinal}
+                llmGroupsFinal={llmGroupsIntersection}
                 onCheckChange={handleCheckChange}
               />
             </Box>
