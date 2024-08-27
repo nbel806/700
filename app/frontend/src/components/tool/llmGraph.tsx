@@ -219,7 +219,6 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         position: "relative",
         width: "100%",
         height: "100%",
-        bgcolor: "white",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
