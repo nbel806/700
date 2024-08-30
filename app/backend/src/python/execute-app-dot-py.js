@@ -7,7 +7,10 @@ const execPromise = promisify(exec);
 
 // Function to run the Python script with arguments
 export async function runPythonScript(prompts, groups, llm, continuations) {
-  const executablePath = resolve(process.cwd(), "../../NZContext/app.py");
+  const executablePath = resolve(
+    process.cwd(),
+    "../../NZContext/app_for_backend.py"
+  );
 
   // Convert arguments to JSON strings and escape quotes
   const promptsJson = JSON.stringify(prompts).replace(/"/g, '\\"');
