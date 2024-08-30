@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -8,6 +9,8 @@ import {
 } from "@mui/material";
 
 export default function LLMS() {
+  const llms = ["GPT-2", "BERT", "PHI", "LLAMA", "GEMMA"];
+
   return (
     <Card
       sx={{
@@ -36,11 +39,9 @@ export default function LLMS() {
           width: "100%",
         }}
       >
-        <FormControlLabel control={<Checkbox />} label="GPT-2" />
-        <FormControlLabel control={<Checkbox />} label="BERT" />
-        <FormControlLabel control={<Checkbox />} label="PHI" />
-        <FormControlLabel control={<Checkbox />} label="LLAMA" />
-        <FormControlLabel control={<Checkbox />} label="GEMMA" />
+        {llms.map((label) => (
+          <FormControlLabel key={label} control={<Checkbox />} label={label} />
+        ))}
       </Box>
     </Card>
   );

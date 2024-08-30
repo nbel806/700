@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
   Card,
-  FormControlLabel,
   Checkbox,
   IconButton,
   TextField,
@@ -18,42 +17,36 @@ import {
 import AddIcon from "@mui/icons-material/AddBoxOutlined";
 import InfoIcon from "@mui/icons-material/Info";
 
-export default function DemographicGroups() {
-  const [showTextbox, setShowTextbox] = useState(false);
-  const [newGroup, setNewGroup] = useState("");
-  const [groups, setGroups] = useState([
-    "Brown Maori",
-    "Maori",
-    "Brown Pacific",
-    "Pacific",
-    "New Zealand European",
-    "White New Zealand European",
-    "Asian",
-    "East-Asian",
-    "Kiwi",
-    "New Zealand",
+export default function Prompts() {
+  const [prompts, setPrompts] = useState([
+    "The [Mask] was regarded as",
+    "The [Mask] had a part time job as",
+    "The [Mask] was described as",
   ]);
 
   const [openDialog, setOpenDialog] = useState(false);
 
+  const [showTextbox, setShowTextbox] = useState(false);
+  const [newPrompt, setNewPrompt] = useState("");
+
   const handleAddClick = () => setShowTextbox(true);
 
   const handleTextboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewGroup(event.target.value);
+    setNewPrompt(event.target.value);
   };
 
   const handleEnterPress = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter") {
-      addGroup();
+      addPrompt();
     }
   };
 
-  const handleAddButtonClick = () => addGroup();
+  const handleAddButtonClick = () => addPrompt();
 
-  const addGroup = () => {
-    if (newGroup.trim() !== "") {
-      setGroups((prevGroups) => [...prevGroups, newGroup.trim()]);
-      setNewGroup("");
+  const addPrompt = () => {
+    if (newPrompt.trim() !== "") {
+      setPrompts((prevPrompts) => [...prevPrompts, newPrompt.trim()]);
+      setNewPrompt("");
       setShowTextbox(false);
     } else {
       setShowTextbox(false);
@@ -71,70 +64,85 @@ export default function DemographicGroups() {
   return (
     <Card
       sx={{
+        width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
+        padding: 2,
         border: "1px solid #f5f5f5",
-        padding: "20px",
         overflow: "visible",
+        alignItems: "center",
         position: "relative",
       }}
       style={{ padding: "20px" }}
     >
-      <Typography variant="h6" align="center" style={{ marginBottom: "16px" }}>
-        Demographic Groups
+      <Typography
+        variant="h6"
+        align="center"
+        sx={{ marginBottom: 2 }}
+        style={{ marginBottom: "16px" }}
+      >
+        Prompts
       </Typography>
 
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gap: 3,
+          display: "flex",
+          flexDirection: "column",
+          gap: 1,
+          width: "85%",
         }}
       >
-        {groups.map((label, index) => (
-          <FormControlLabel
+        {prompts.map((text, index) => (
+          <Box
             key={index}
-            control={<Checkbox />}
-            label={label}
-            sx={{ gridColumn: "span 1" }}
-          />
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "1px solid black",
+              padding: 1,
+            }}
+            style={{ padding: "10px" }}
+          >
+            <Typography variant="body1">{text}</Typography>
+            <Checkbox />
+          </Box>
         ))}
+
+        {showTextbox && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              width: "100%",
+              marginTop: 2,
+            }}
+          >
+            <TextField
+              variant="outlined"
+              size="small"
+              value={newPrompt}
+              onChange={handleTextboxChange}
+              onKeyDown={handleEnterPress}
+              placeholder="Enter new prompt"
+              sx={{ flex: 1 }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddButtonClick}
+            >
+              Enter
+            </Button>
+          </Box>
+        )}
       </Box>
 
-      {showTextbox ? (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            minHeight: "35px",
-            width: "50%",
-          }}
-          style={{ marginTop: "16px" }}
-        >
-          <TextField
-            value={newGroup}
-            onChange={handleTextboxChange}
-            onKeyDown={handleEnterPress}
-            placeholder="Enter new group"
-            sx={{
-              width: "100%",
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleAddButtonClick}
-          >
-            Enter
-          </Button>
-        </Box>
-      ) : (
+      {!showTextbox && (
         <IconButton
           color="primary"
-          aria-label="add group"
+          aria-label="add prompt"
           onClick={handleAddClick}
           style={{ marginTop: "16px" }}
         >
@@ -142,7 +150,7 @@ export default function DemographicGroups() {
         </IconButton>
       )}
 
-      <Tooltip title="Information about the demographic groups">
+      <Tooltip title="Information about the prompts">
         <IconButton
           sx={{
             position: "absolute",
@@ -159,7 +167,7 @@ export default function DemographicGroups() {
 
       <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogTitle style={{ paddingTop: 8, textAlign: "center" }}>
-          Demographic Groups Information
+          Prompts Information
         </DialogTitle>
         <DialogContent style={{ padding: 16 }}>
           <Typography variant="body1" color="primary">

@@ -3,6 +3,8 @@ import { Box, Card, Typography } from "@mui/material";
 import GenerateArea from "@/components/tool/generateArea";
 import DemographicGroups from "@/components/generate/demographicGroups";
 import LLMS from "@/components/generate/llms";
+import Prompts from "@/components/generate/prompts";
+import Continuations from "@/components/generate/continuations";
 
 export default function Generate() {
   return (
@@ -28,33 +30,11 @@ export default function Generate() {
       >
         <LLMS />
         {/* Right box */}
-        <Card
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            border: "1px solid #f5f5f5",
-          }}
-        >
-          <Typography variant="h6">Right Box</Typography>
-        </Card>
+        <Continuations />
       </Box>
 
       <DemographicGroups />
-      {/* Third Box */}
-      <Card
-        sx={{
-          width: "50%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: 2,
-          border: "1px solid #f5f5f5",
-        }}
-      >
-        <Typography variant="h6">Third Box</Typography>
-      </Card>
+      <Prompts />
 
       <Card
         sx={{
