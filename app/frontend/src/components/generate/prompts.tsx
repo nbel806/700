@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
+import { useState } from "react";
 import {
   Box,
   Typography,
@@ -17,15 +18,15 @@ import {
 import AddIcon from "@mui/icons-material/AddBoxOutlined";
 import InfoIcon from "@mui/icons-material/Info";
 
-export default function Prompts() {
-  const [prompts, setPrompts] = useState([
-    "The [Mask] was regarded as",
-    "The [Mask] had a part time job as",
-    "The [Mask] was described as",
-  ]);
+interface PromptsProps {
+  prompts: { description: string; checked: boolean }[];
+  setPrompts: React.Dispatch<
+    React.SetStateAction<{ description: string; checked: boolean }[]>
+  >;
+}
 
+export default function Prompts({ prompts, setPrompts }: PromptsProps) {
   const [openDialog, setOpenDialog] = useState(false);
-
   const [showTextbox, setShowTextbox] = useState(false);
   const [newPrompt, setNewPrompt] = useState("");
 
@@ -45,12 +46,23 @@ export default function Prompts() {
 
   const addPrompt = () => {
     if (newPrompt.trim() !== "") {
-      setPrompts((prevPrompts) => [...prevPrompts, newPrompt.trim()]);
+      setPrompts((prevPrompts) => [
+        ...prevPrompts,
+        { description: newPrompt.trim(), checked: true },
+      ]);
       setNewPrompt("");
       setShowTextbox(false);
     } else {
       setShowTextbox(false);
     }
+  };
+
+  const handleCheckboxChange = (index: number) => {
+    setPrompts((prevPrompts) =>
+      prevPrompts.map((prompt, i) =>
+        i === index ? { ...prompt, checked: !prompt.checked } : prompt
+      )
+    );
   };
 
   const handleClickOpen = () => {
@@ -92,7 +104,7 @@ export default function Prompts() {
           width: "85%",
         }}
       >
-        {prompts.map((text, index) => (
+        {prompts.map((prompt, index) => (
           <Box
             key={index}
             sx={{
@@ -104,8 +116,11 @@ export default function Prompts() {
             }}
             style={{ padding: "10px" }}
           >
-            <Typography variant="body1">{text}</Typography>
-            <Checkbox />
+            <Typography variant="body1">{prompt.description}</Typography>
+            <Checkbox
+              checked={prompt.checked}
+              onChange={() => handleCheckboxChange(index)}
+            />
           </Box>
         ))}
 

@@ -13,15 +13,24 @@ import {
   IconButton,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+interface ContinuationsProps {
+  continuationsNumber: number;
+  setContinuationsNumber: (value: number) => void;
+}
 
-export default function Continuations() {
-  const [value, setValue] = useState<number>(10);
+export default function Continuations({
+  continuationsNumber,
+  setContinuationsNumber,
+}: ContinuationsProps) {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(event.target.value);
-    if (event.target.value === "" || (newValue >= 1 && newValue <= 999)) {
-      setValue(newValue);
+    const newContinuationsNumber = Number(event.target.value);
+    if (
+      event.target.value === "" ||
+      (newContinuationsNumber >= 1 && newContinuationsNumber <= 999)
+    ) {
+      setContinuationsNumber(newContinuationsNumber);
     }
   };
 
@@ -51,7 +60,7 @@ export default function Continuations() {
 
       <TextField
         type="number"
-        value={value}
+        value={continuationsNumber}
         onChange={handleChange}
         inputProps={{
           max: 999,

@@ -10,10 +10,10 @@ router.use("/llm", llmRoutes);
 
 // Export all data
 import exportRouter from "./export.js";
-llmRoutes.use("/export", exportRouter);
+router.use("/export", exportRouter);
 
 // Generate
 import generateRouter from "./generate.js";
-llmRoutes.use("/generate", generateRouter);
+router.use("/generate", generateRouter);
 
 export default router;

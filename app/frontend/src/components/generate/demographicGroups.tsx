@@ -18,21 +18,19 @@ import {
 import AddIcon from "@mui/icons-material/AddBoxOutlined";
 import InfoIcon from "@mui/icons-material/Info";
 
-export default function DemographicGroups() {
+interface DemographicGroupsProps {
+  groups: { name: string; checked: boolean }[];
+  setGroups: React.Dispatch<
+    React.SetStateAction<{ name: string; checked: boolean }[]>
+  >;
+}
+
+export default function DemographicGroups({
+  groups,
+  setGroups,
+}: DemographicGroupsProps) {
   const [showTextbox, setShowTextbox] = useState(false);
   const [newGroup, setNewGroup] = useState("");
-  const [groups, setGroups] = useState([
-    "Brown Maori",
-    "Maori",
-    "Brown Pacific",
-    "Pacific",
-    "New Zealand European",
-    "White New Zealand European",
-    "Asian",
-    "East-Asian",
-    "Kiwi",
-    "New Zealand",
-  ]);
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -52,7 +50,10 @@ export default function DemographicGroups() {
 
   const addGroup = () => {
     if (newGroup.trim() !== "") {
-      setGroups((prevGroups) => [...prevGroups, newGroup.trim()]);
+      setGroups((prevGroups) => [
+        ...prevGroups,
+        { name: newGroup.trim(), checked: true },
+      ]);
       setNewGroup("");
       setShowTextbox(false);
     } else {
@@ -66,6 +67,14 @@ export default function DemographicGroups() {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleCheckboxChange = (name: string) => {
+    setGroups((prevGroups) =>
+      prevGroups.map((group) =>
+        group.name === name ? { ...group, checked: !group.checked } : group
+      )
+    );
   };
 
   return (
@@ -93,11 +102,16 @@ export default function DemographicGroups() {
           gap: 3,
         }}
       >
-        {groups.map((label, index) => (
+        {groups.map((group) => (
           <FormControlLabel
-            key={index}
-            control={<Checkbox />}
-            label={label}
+            key={group.name}
+            control={
+              <Checkbox
+                checked={group.checked}
+                onChange={() => handleCheckboxChange(group.name)}
+              />
+            }
+            label={group.name}
             sx={{ gridColumn: "span 1" }}
           />
         ))}

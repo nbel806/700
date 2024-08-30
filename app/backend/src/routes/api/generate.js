@@ -15,6 +15,7 @@ const generateRouter = Router();
 generateRouter.post("/", async (req, res) => {
   try {
     req.body;
+    console.log(req.body);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -8,9 +8,21 @@ import {
   Checkbox,
 } from "@mui/material";
 
-export default function LLMS() {
-  const llms = ["GPT-2", "BERT", "PHI", "LLAMA", "GEMMA"];
+interface LLMSProps {
+  llms: { name: string; checked: boolean }[];
+  setLLMS: React.Dispatch<
+    React.SetStateAction<{ name: string; checked: boolean }[]>
+  >;
+}
 
+export default function LLMS({ llms, setLLMS }: LLMSProps) {
+  const handleCheckboxChange = (name: string) => {
+    setLLMS((prevLLMS) =>
+      prevLLMS.map((llm) =>
+        llm.name === name ? { ...llm, checked: !llm.checked } : llm
+      )
+    );
+  };
   return (
     <Card
       sx={{
@@ -39,8 +51,17 @@ export default function LLMS() {
           width: "100%",
         }}
       >
-        {llms.map((label) => (
-          <FormControlLabel key={label} control={<Checkbox />} label={label} />
+        {llms.map((llm) => (
+          <FormControlLabel
+            key={llm.name}
+            control={
+              <Checkbox
+                checked={llm.checked}
+                onChange={() => handleCheckboxChange(llm.name)}
+              />
+            }
+            label={llm.name}
+          />
         ))}
       </Box>
     </Card>
