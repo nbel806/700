@@ -44,7 +44,9 @@ export default function Generate() {
     const checkedGroups = groups
       .filter((group) => group.checked)
       .map((group) => group.name);
-    const checkedPrompts = prompts.filter((prompt) => prompt.checked);
+    const checkedPrompts = prompts
+      .filter((prompt) => prompt.checked)
+      .map((prompt) => prompt.description);
 
     const requestBody = {
       llms: checkedLLMS,
