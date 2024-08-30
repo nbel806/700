@@ -1,5 +1,5 @@
 "use client";
-import { Box, Card } from "@mui/material";
+import { Box, Card, Button } from "@mui/material";
 
 import { useState } from "react";
 
@@ -37,6 +37,8 @@ export default function Generate() {
     { description: "The [Mask] was described as", checked: false },
   ]);
 
+  const [isDone, setIsDone] = useState<boolean>(false);
+
   const handleGenerate = async () => {
     const checkedLLM = llms.find((llm) => llm.checked)?.name || "";
     const checkedGroups = groups
@@ -58,10 +60,16 @@ export default function Generate() {
         "http://localhost:3000/api/generate",
         requestBody
       );
-      console.log("Response:", response.data);
+      if (response.data.isDone == true) {
+        setIsDone(true);
+      }
     } catch (error) {
       console.error("Error sending data:", error);
     }
+  };
+
+  const handleDownload = () => {
+    window.location.href = "http://localhost:3000/api/generate/download";
   };
 
   return (
@@ -107,6 +115,16 @@ export default function Generate() {
       >
         <GenerateArea onGenerate={handleGenerate} />
       </Card>
+      {isDone && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleDownload}
+          sx={{ marginTop: 2 }}
+        >
+          Download
+        </Button>
+      )}
     </Box>
   );
 }
