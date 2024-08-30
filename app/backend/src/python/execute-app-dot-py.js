@@ -6,10 +6,8 @@ import { resolve } from "path";
 const execPromise = promisify(exec);
 
 // Function to run the Python script with arguments
-export async function runPythonScript(prompts, groups, llms, continuations) {
+export async function runPythonScript(prompts, groups, llm, continuations) {
   const executablePath = resolve(process.cwd(), "../../NZContext/app.py");
-
-  console.log(executablePath);
 
   // Convert arguments to JSON strings and escape quotes
   const promptsJson = JSON.stringify(prompts).replace(/"/g, '\\"');
@@ -19,7 +17,7 @@ export async function runPythonScript(prompts, groups, llms, continuations) {
   const args = [
     `--prompts="${promptsJson}"`,
     `--masks="${groupsJson}"`,
-    `--model_type=${llms}`,
+    `--model_type=${llm}`,
     `--num_continuations=${continuations}`,
   ].join(" ");
 
@@ -48,7 +46,10 @@ export async function runPythonScript(prompts, groups, llms, continuations) {
       throw new Error(filteredStderr);
     }
     console.log(`Executable output: ${stdout}`);
-    return stdout;
+
+    const isDone = stdout.includes("done");
+
+    return { stdout, isDone };
   } catch (error) {
     console.error(`Error executing Python script: ${error.message}`);
     throw new Error(`Error executing Python script: ${error.message}`);

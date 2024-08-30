@@ -26,7 +26,7 @@ export default function Generate() {
   ]);
   const [llms, setLLMS] = useState<{ name: string; checked: boolean }[]>([
     { name: "GPT-2", checked: true },
-    { name: "BERT", checked: true },
+    { name: "BERT", checked: false },
     { name: "PHI", checked: false },
     { name: "LLAMA", checked: false },
     { name: "GEMMA", checked: false },
@@ -38,9 +38,7 @@ export default function Generate() {
   ]);
 
   const handleGenerate = async () => {
-    const checkedLLMS = llms
-      .filter((llm) => llm.checked)
-      .map((llm) => llm.name);
+    const checkedLLM = llms.find((llm) => llm.checked)?.name || "";
     const checkedGroups = groups
       .filter((group) => group.checked)
       .map((group) => group.name);
@@ -49,7 +47,7 @@ export default function Generate() {
       .map((prompt) => prompt.description);
 
     const requestBody = {
-      llms: checkedLLMS,
+      llm: checkedLLM,
       continuations: continuationsNumber,
       groups: checkedGroups,
       prompts: checkedPrompts,

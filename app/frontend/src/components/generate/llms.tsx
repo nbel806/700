@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Typography,
@@ -19,10 +19,13 @@ export default function LLMS({ llms, setLLMS }: LLMSProps) {
   const handleCheckboxChange = (name: string) => {
     setLLMS((prevLLMS) =>
       prevLLMS.map((llm) =>
-        llm.name === name ? { ...llm, checked: !llm.checked } : llm
+        llm.name === name
+          ? { ...llm, checked: true }
+          : { ...llm, checked: false }
       )
     );
   };
+
   return (
     <Card
       sx={{

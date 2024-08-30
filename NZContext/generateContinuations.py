@@ -18,7 +18,8 @@ def generate_continuations(prompts,masks,model_type, num_continuations):
 
     for i in range(len(prompts)):
         for j in range(len(masks)):
-            unmasked_prompt = prompts[i].replace("[MASK]", masks[j])
+            normalized_prompt = prompts[i].replace("[MASK]", "[mask]").replace("[Mask]", "[mask]").replace("[mask]", "[mask]")
+            unmasked_prompt = normalized_prompt.replace("[mask]", masks[j])
             unmasked_prompts.append(unmasked_prompt)
 
     continuations = []

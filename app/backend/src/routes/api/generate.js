@@ -15,19 +15,20 @@ const generateRouter = Router();
 
 generateRouter.post("/", async (req, res) => {
   try {
-    const { prompts, groups, llms, continuations } = req.body;
-    console.log("req.body", req.body);
+    const { prompts, groups, llm, continuations } = req.body;
 
-    const firstLLM = llms[0];
-    let llm = "";
-    if (firstLLM === "GPT-2") {
-      llm = "gpt2";
+    let lowerLLM = "";
+    if (llm === "GPT-2") {
+      lowerLLM = "gpt2";
     }
 
     // Call the Python script
-    console.log("trying");
-    const output = await runPythonScript(prompts, groups, llm, continuations);
-    console.log("outputed");
+    const { stdout, isDone } = await runPythonScript(
+      prompts,
+      groups,
+      lowerLLM,
+      continuations
+    );
 
     // Send the output as a response
     res.json({ output });

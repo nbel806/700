@@ -49,6 +49,5 @@ if __name__ == "__main__":
     num_continuations = args.num_continuations
 
     # Run the main application
-    print(prompts, masks, model_type, num_continuations)
     app(prompts, masks, model_type, num_continuations)
 
