@@ -22,6 +22,7 @@ export default function LLMGroups({
       sx={{
         backgroundColor: "background.paper",
         borderRadius: 2,
+        border: "1px solid #7F8C8D",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

@@ -134,7 +134,7 @@ export default function Tool() {
             <Box
               flex="1"
               style={{ padding: 16 }}
-              sx={{ backgroundColor: "divider" }}
+              sx={{ backgroundColor: "background.paper" }}
             >
               <LLMCompare
                 llm1={llm1}
@@ -146,7 +146,7 @@ export default function Tool() {
             <Box
               flex="3"
               style={{ padding: 16 }}
-              sx={{ backgroundColor: "divider" }}
+              sx={{ backgroundColor: "background.paper" }}
             >
               <LLMGroups
                 llmGroupsFinal={llmGroupsIntersection}
