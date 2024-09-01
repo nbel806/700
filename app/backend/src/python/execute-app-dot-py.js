@@ -30,30 +30,34 @@ export async function runPythonScript(prompts, groups, llm, continuations) {
   try {
     const { stdout, stderr } = await execPromise(command);
     const stderrLines = stderr.split("\n");
+    // const filteredStderr = stderrLines
+    //   .filter(
+    //     (line) =>
+    //       !line.includes(
+    //         "FutureWarning: `clean_up_tokenization_spaces` was not set"
+    //       ) &&
+    //       !line.includes("warnings.warn(") &&
+    //       !line.includes(
+    //         "Using default facebook/roberta-hate-speech-dynabench-r4-target checkpoint"
+    //       ) &&
+    //       !line.includes(
+    //         "Hardware accelerator e.g. GPU is available in the environment"
+    //       ) &&
+    //       !line.includes(
+    //         "huggingface/tokenizers: The current process just got forked"
+    //       ) &&
+    //       !line.includes("To disable this warning, you can either:") &&
+    //       !line.includes(
+    //         " Avoid using `tokenizers` before the fork if possible"
+    //       ) &&
+    //       !line.includes(
+    //         " Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)"
+    //       )
+    //   )
+    //   .join("\n");
+
     const filteredStderr = stderrLines
-      .filter(
-        (line) =>
-          !line.includes(
-            "FutureWarning: `clean_up_tokenization_spaces` was not set"
-          ) &&
-          !line.includes("warnings.warn(") &&
-          !line.includes(
-            "Using default facebook/roberta-hate-speech-dynabench-r4-target checkpoint"
-          ) &&
-          !line.includes(
-            "Hardware accelerator e.g. GPU is available in the environment"
-          ) &&
-          !line.includes(
-            "huggingface/tokenizers: The current process just got forked"
-          ) &&
-          !line.includes("To disable this warning, you can either:") &&
-          !line.includes(
-            " Avoid using `tokenizers` before the fork if possible"
-          ) &&
-          !line.includes(
-            " Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)"
-          )
-      )
+      .filter((line) => line.includes("Error") && line.includes("error"))
       .join("\n");
 
     // If there's any error output other than errors that are meant to happen, throw an error
