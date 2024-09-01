@@ -17,7 +17,7 @@ const Navbar = () => {
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box>
           <Link href="/home">
-            <Typography variant="h5" style={{ marginLeft: 32 }}>
+            <Typography variant="h6" style={{ marginLeft: 32 }}>
               University of Auckland
             </Typography>
           </Link>
