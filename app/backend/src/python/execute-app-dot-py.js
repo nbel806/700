@@ -39,6 +39,19 @@ export async function runPythonScript(prompts, groups, llm, continuations) {
           !line.includes("warnings.warn(") &&
           !line.includes(
             "Using default facebook/roberta-hate-speech-dynabench-r4-target checkpoint"
+          ) &&
+          !line.includes(
+            "Hardware accelerator e.g. GPU is available in the environment"
+          ) &&
+          !line.includes(
+            "huggingface/tokenizers: The current process just got forked"
+          ) &&
+          !line.includes("To disable this warning, you can either:") &&
+          !line.includes(
+            " Avoid using `tokenizers` before the fork if possible"
+          ) &&
+          !line.includes(
+            " Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)"
           )
       )
       .join("\n");
