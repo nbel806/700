@@ -13,10 +13,10 @@ export default function CallToAction() {
       }}
       sx={{ backgroundColor: "background.paper" }}
     >
-      <Typography variant="h1" color="primary" fontWeight="bold">
-        Bias Detection Tool
+      <Typography variant="h2" color="black" fontWeight="bold">
+        LLM Bias Detection Tool
       </Typography>
-      <Typography color="primary" variant="h4">
+      <Typography color="black" variant="h5">
         for the New Zealand Context
       </Typography>
 
@@ -26,10 +26,10 @@ export default function CallToAction() {
         style={{
           marginTop: 48,
           padding: 32,
-          borderRadius: 32,
+          borderRadius: 20,
         }}
       >
-        <Typography variant="h3" fontWeight={"bold"}>
+        <Typography variant="h4" fontWeight={"bold"}>
           Get started
         </Typography>
       </Button>
