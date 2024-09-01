@@ -92,24 +92,22 @@ export default function LLMCompare({
                   bgcolor: "white",
                   borderRadius: "5px",
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                  height: 56,
-                  fontSize: "2rem",
+                  fontSize: "1rem",
                 }}
-                style={{ padding: "20px" }}
+                style={{ padding: 8 }}
               >
                 {llmNames.map((name, index) => (
-                  <MenuItem key={index} value={name} sx={{ fontSize: "2rem" }}>
+                  <MenuItem
+                    key={index}
+                    value={name}
+                    style={{ padding: 8 }}
+                    sx={{ fontSize: "1rem" }}
+                  >
                     {name}
                   </MenuItem>
                 ))}
               </Select>
             </Box>
-          </Box>
-
-          <Box sx={{ textAlign: "center", my: 2 }}>
-            <Typography color="primary" variant="h6">
-              vs
-            </Typography>
           </Box>
 
           <Box
@@ -119,7 +117,7 @@ export default function LLMCompare({
               alignItems: "stretch",
             }}
           >
-            <Typography variant="h6" color="primary">
+            <Typography variant="h6" color="primary" style={{ marginTop: 4 }}>
               LLM 2
             </Typography>
             <Box
@@ -140,13 +138,17 @@ export default function LLMCompare({
                   bgcolor: "white",
                   borderRadius: "5px",
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                  height: 56,
-                  fontSize: "2rem",
+                  fontSize: "1rem",
                 }}
-                style={{ padding: "20px" }}
+                style={{ padding: 8 }}
               >
                 {llmNames.map((name, index) => (
-                  <MenuItem key={index} value={name} sx={{ fontSize: "2rem" }}>
+                  <MenuItem
+                    key={index}
+                    value={name}
+                    style={{ padding: 8 }}
+                    sx={{ fontSize: "1rem" }}
+                  >
                     {name}
                   </MenuItem>
                 ))}
