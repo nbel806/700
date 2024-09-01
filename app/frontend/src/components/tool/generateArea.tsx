@@ -21,10 +21,9 @@ export default function GenerateArea({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100%",
       }}
       style={{
-        padding: "10px",
+        padding: 2,
       }}
     >
       <Typography
