@@ -16,7 +16,6 @@ export default function GenerateArea({
     <Box
       sx={{
         borderRadius: 2,
-        border: "1px solid #e2e2e2",
         backgroundColor: "#f5f5f5",
         display: "flex",
         flexDirection: "column",

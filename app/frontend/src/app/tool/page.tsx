@@ -81,15 +81,18 @@ export default function Tool() {
           xs={9}
           container
           direction="column"
-          style={{ height: "100%", display: "flex" }}
+          style={{
+            height: "100%",
+            display: "flex",
+          }}
         >
           <Box
             flex="3"
             style={{
-              backgroundColor: "#f0f0f0",
-              padding: "3vh",
+              padding: 16,
               overflow: "auto",
             }}
+            sx={{ backgroundColor: "background.default" }}
           >
             <LLMGraph
               llm1={llm1}
@@ -100,11 +103,11 @@ export default function Tool() {
           <Box
             flex="1"
             style={{
-              padding: "3vh",
+              padding: 16,
               overflow: "auto",
             }}
             sx={{
-              backgroundColor: "background.paper",
+              backgroundColor: "background.default",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -134,7 +137,7 @@ export default function Tool() {
             <Box
               flex="1"
               style={{ padding: 16 }}
-              sx={{ backgroundColor: "background.paper" }}
+              sx={{ backgroundColor: "background.default" }}
             >
               <LLMCompare
                 llm1={llm1}
@@ -146,7 +149,7 @@ export default function Tool() {
             <Box
               flex="3"
               style={{ padding: 16 }}
-              sx={{ backgroundColor: "background.paper" }}
+              sx={{ backgroundColor: "background.default" }}
             >
               <LLMGroups
                 llmGroupsFinal={llmGroupsIntersection}

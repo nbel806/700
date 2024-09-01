@@ -79,7 +79,6 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
         width: "80%",
         position: "relative",
         borderRadius: 2,
-        border: "1px solid #7F8C8D",
         backgroundColor: "background.paper",
       }}
       style={{ padding: "20px" }}

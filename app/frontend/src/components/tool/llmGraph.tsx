@@ -222,9 +222,15 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "background.default",
+        borderRadius: 4,
       }}
     >
-      {loading ? <p>Loading...</p> : <Bar data={data} options={options} />}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Bar data={data} options={options} style={{ padding: 20 }} />
+      )}
       <MuiTooltip title="Information about the chart">
         <IconButton
           sx={{

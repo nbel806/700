@@ -65,7 +65,6 @@ export default function LLMCompare({
         flexDirection: "column",
         alignItems: "center",
         borderRadius: 2,
-        border: "1px solid #7F8C8D",
       }}
       style={{
         padding: 16,
