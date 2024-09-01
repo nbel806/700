@@ -20,20 +20,18 @@ export default function LLMGroups({
   return (
     <Box
       sx={{
+        backgroundColor: "background.paper",
         borderRadius: 2,
-        border: "1px solid #e2e2e2",
-        backgroundColor: "#f5f5f5",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100%",
       }}
       style={{
-        padding: "30px",
+        padding: 16,
       }}
     >
       <Typography
-        variant="h4"
+        variant="h5"
         gutterBottom
         color="primary"
         sx={{ fontWeight: "bold", mt: "2px" }}
@@ -62,11 +60,7 @@ export default function LLMGroups({
               }}
             >
               <Box>
-                <Typography
-                  variant="body1"
-                  color="primary"
-                  sx={{ fontSize: "1.5rem" }}
-                >
+                <Typography variant="body1" color="black">
                   {group.name}
                 </Typography>
               </Box>

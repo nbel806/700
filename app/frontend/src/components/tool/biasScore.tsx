@@ -71,19 +71,18 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
   return (
     <Box
       sx={{
-        borderRadius: 2,
-        border: "1px solid #e2e2e2",
-        backgroundColor: "#f5f5f5",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
+        width: "80%",
         position: "relative",
+        backgroundColor: "background.paper",
       }}
       style={{ padding: "20px" }}
     >
-      <EmojiEventsIcon fontSize="large" color="primary" />
+      <EmojiEventsIcon sx={{ fontSize: 40 }} color="primary" />
 
       <Box
         sx={{
@@ -100,8 +99,9 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
           {llm1 || ""}
         </Typography>
         <Typography
-          variant="h6"
+          variant="h5"
           color="primary"
+          fontWeight={"bold"}
           sx={{ flex: 1, textAlign: "center" }}
         >
           Bias Score
@@ -160,7 +160,7 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
           aria-label="info"
           onClick={handleClickOpen}
         >
-          <InfoIcon sx={{ fontSize: 36 }} />
+          <InfoIcon sx={{ fontSize: 24 }} />
         </IconButton>
       </Tooltip>
 
