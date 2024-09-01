@@ -81,15 +81,18 @@ export default function Tool() {
           xs={9}
           container
           direction="column"
-          style={{ height: "100%", display: "flex" }}
+          style={{
+            height: "100%",
+            display: "flex",
+          }}
         >
           <Box
             flex="3"
             style={{
-              backgroundColor: "#f0f0f0",
-              padding: "3vh",
+              padding: 16,
               overflow: "auto",
             }}
+            sx={{ backgroundColor: "background.default" }}
           >
             <LLMGraph
               llm1={llm1}
@@ -100,9 +103,15 @@ export default function Tool() {
           <Box
             flex="1"
             style={{
-              backgroundColor: "#e0e0e0",
-              padding: "3vh",
+              padding: 16,
               overflow: "auto",
+            }}
+            sx={{
+              backgroundColor: "background.default",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <BiasScore llm1={llm1} llm2={llm2} />
@@ -127,7 +136,8 @@ export default function Tool() {
           >
             <Box
               flex="1"
-              style={{ backgroundColor: "#d0d0d0", padding: "3vh" }}
+              style={{ padding: 16 }}
+              sx={{ backgroundColor: "background.default" }}
             >
               <LLMCompare
                 llm1={llm1}
@@ -138,7 +148,8 @@ export default function Tool() {
             </Box>
             <Box
               flex="3"
-              style={{ backgroundColor: "#c0c0c0", padding: "3vh" }}
+              style={{ padding: 16 }}
+              sx={{ backgroundColor: "background.default" }}
             >
               <LLMGroups
                 llmGroupsFinal={llmGroupsIntersection}

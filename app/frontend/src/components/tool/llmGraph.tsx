@@ -123,14 +123,14 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
       {
         label: llm1,
         data: demographicGroupData1,
-        backgroundColor: "rgba(255, 99, 132, 0.2)", // Different color
+        backgroundColor: "rgba(255, 99, 132, 0.7)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
       },
       {
         label: llm2,
         data: demographicGroupData2,
-        backgroundColor: "rgba(54, 162, 235, 0.2)", // Different color
+        backgroundColor: "rgba(54, 162, 235, 0.7)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
       },
@@ -154,7 +154,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
       },
       title: {
         display: true,
-        text: "Comparison of continuation difference between LLMs",
+        text: "Continuation difference between LLMs",
         font: {
           family: "Arial" as const,
           size: 30,
@@ -172,7 +172,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Difference (Number of Positive Continuation - Negative Continuation)",
+          text: "Positive - Negative generation",
           font: {
             family: "Arial" as const,
             size: 16,
@@ -192,7 +192,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         ticks: {
           font: {
             family: "Arial" as const,
-            size: 20,
+            size: 14,
             style: "normal" as const,
           },
         },
@@ -204,7 +204,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
           text: "Demographic Groups",
           font: {
             family: "Arial" as const,
-            size: 24,
+            size: 20,
             style: "normal" as const,
             weight: "bold" as const,
           },
@@ -222,9 +222,15 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "background.default",
+        borderRadius: 4,
       }}
     >
-      {loading ? <p>Loading...</p> : <Bar data={data} options={options} />}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Bar data={data} options={options} style={{ padding: 20 }} />
+      )}
       <MuiTooltip title="Information about the chart">
         <IconButton
           sx={{
@@ -236,7 +242,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
           aria-label="info"
           onClick={handleClickOpen}
         >
-          <InfoIcon sx={{ fontSize: 36 }} />
+          <InfoIcon sx={{ fontSize: 24 }} />
         </IconButton>
       </MuiTooltip>
       <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>

@@ -13,8 +13,20 @@ const Navbar = () => {
   const navItems = ["Home", "Tool", "Generate", "About"];
 
   return (
-    <AppBar position="sticky" sx={{ bgcolor: "primary.main", height: "8vh" }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+    <AppBar
+      position="sticky"
+      sx={{
+        bgcolor: "primary.main",
+        height: "8vh",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <Toolbar
+        sx={{ display: "flex", justifyContent: "space-between" }}
+        style={{ width: "100vw" }}
+      >
         <Box>
           <Link href="/home">
             <Typography variant="h6" style={{ marginLeft: 32 }}>

@@ -58,7 +58,27 @@ export default function LLMCompare({
   }, [llm1, llm2]);
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 600, mx: "auto" }}>
+    <Box
+      sx={{
+        backgroundColor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        borderRadius: 2,
+      }}
+      style={{
+        padding: 16,
+      }}
+    >
+      <Typography
+        variant="h5"
+        gutterBottom
+        color="primary"
+        sx={{ fontWeight: "bold", mt: "2px" }}
+        style={{ marginBottom: 8 }}
+      >
+        Compare LLMs
+      </Typography>
       {loading && <Typography color="primary">Loading LLMs...</Typography>}
       {error && <Typography color="error">{error}</Typography>}
       {!loading && !error && (
@@ -68,10 +88,10 @@ export default function LLMCompare({
               display: "flex",
               flexDirection: "column",
               alignItems: "stretch",
-              mb: 2,
+              width: "100%",
             }}
           >
-            <Typography variant="h6" color="primary">
+            <Typography variant="h6" color="black">
               LLM 1
             </Typography>
             <Box
@@ -79,7 +99,7 @@ export default function LLMCompare({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "stretch",
-                mt: 1,
+                width: "100%",
               }}
             >
               <Select
@@ -92,13 +112,17 @@ export default function LLMCompare({
                   bgcolor: "white",
                   borderRadius: "5px",
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                  height: 56,
-                  fontSize: "2rem",
+                  fontSize: "body1",
                 }}
-                style={{ padding: "20px" }}
+                style={{ padding: 8, width: "100%" }}
               >
                 {llmNames.map((name, index) => (
-                  <MenuItem key={index} value={name} sx={{ fontSize: "2rem" }}>
+                  <MenuItem
+                    key={index}
+                    value={name}
+                    style={{ padding: 8 }}
+                    sx={{ fontSize: "body1" }}
+                  >
                     {name}
                   </MenuItem>
                 ))}
@@ -106,20 +130,15 @@ export default function LLMCompare({
             </Box>
           </Box>
 
-          <Box sx={{ textAlign: "center", my: 2 }}>
-            <Typography color="primary" variant="h6">
-              vs
-            </Typography>
-          </Box>
-
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "stretch",
+              width: "100%",
             }}
           >
-            <Typography variant="h6" color="primary">
+            <Typography variant="h6" color="black" style={{ marginTop: 8 }}>
               LLM 2
             </Typography>
             <Box
@@ -127,7 +146,6 @@ export default function LLMCompare({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "stretch",
-                mt: 1,
               }}
             >
               <Select
@@ -140,13 +158,17 @@ export default function LLMCompare({
                   bgcolor: "white",
                   borderRadius: "5px",
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                  height: 56,
-                  fontSize: "2rem",
+                  fontSize: "body1",
                 }}
-                style={{ padding: "20px" }}
+                style={{ padding: 8, marginBottom: 8 }}
               >
                 {llmNames.map((name, index) => (
-                  <MenuItem key={index} value={name} sx={{ fontSize: "2rem" }}>
+                  <MenuItem
+                    key={index}
+                    value={name}
+                    style={{ padding: 8 }}
+                    sx={{ fontSize: "body1" }}
+                  >
                     {name}
                   </MenuItem>
                 ))}
