@@ -17,7 +17,7 @@ export default function CallToAction() {
         LLM Bias Detection Tool
       </Typography>
       <Typography color="black" variant="h5">
-        for the New Zealand Context
+        for the New Zealand context
       </Typography>
 
       <Button
@@ -30,7 +30,7 @@ export default function CallToAction() {
         }}
       >
         <Typography variant="h4" fontWeight={"bold"}>
-          Get started
+          Compare LLMs now
         </Typography>
       </Button>
     </Box>
