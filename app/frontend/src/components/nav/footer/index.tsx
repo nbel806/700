@@ -8,23 +8,20 @@ const Footer = () => {
         minWidth: "100vw",
         backgroundColor: "primary.main",
         color: "primary.contrastText",
+        height: "5vh",
       }}
-      style={{ padding: 10 }}
+      style={{
+        display: "flex",
+        alignContent: "center",
+        justifyContent: "space-between",
+        padding: 8,
+      }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <Typography variant="h7" fontWeight={"bold"}>
-          University of Auckland Part IV Project #119
-        </Typography>
-        <Typography variant="h7">Nathan Bell and Troy Murdoch</Typography>
-        <Typography variant="h7">©2024</Typography>
-      </Box>
+      <Typography variant="body1" fontWeight={"bold"}>
+        University of Auckland Part IV Project #119
+      </Typography>
+      <Typography variant="body1">Nathan Bell and Troy Murdoch</Typography>
+      <Typography variant="body1">©2024</Typography>
     </Container>
   );
 };
