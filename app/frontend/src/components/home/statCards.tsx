@@ -7,55 +7,74 @@ export default function StatCards() {
         display: "flex",
         flexDirection: "row",
         minWidth: "100vw",
-        padding: 48,
+        paddingTop: 32,
+        paddingBottom: 32,
+        height: "30%",
         justifyContent: "space-evenly",
       }}
       sx={{
         backgroundColor: "background.default",
-        borderTopColor: "divider",
       }}
     >
       <Card
         style={{
-          padding: 32,
           width: "20vw",
+          padding: 16,
         }}
-        variant="outlined"
-        sx={{ backgroundColor: "background.paper" }}
+        sx={{
+          backgroundColor: "secondary.main",
+          color: "secondary.contrastText",
+          borderRadius: 3,
+          alignContent: "center",
+        }}
       >
         <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" fontWeight={"bold"}>
             5 LLMs
           </Typography>
-          <Typography style={{ marginTop: 16 }} variant="h6">
+          <Typography style={{ marginTop: 16 }} variant="body1">
             Including GPT-2, Bert & more
           </Typography>
         </CardContent>
       </Card>
       <Card
-        style={{ padding: 32, width: "20vw" }}
-        sx={{ backgroundColor: "background.paper" }}
-        variant="outlined"
+        style={{
+          width: "20vw",
+          padding: 16,
+        }}
+        sx={{
+          backgroundColor: "secondary.main",
+          color: "secondary.contrastText",
+          borderRadius: 3,
+          alignContent: "center",
+        }}
       >
         <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" fontWeight={"bold"}>
             NZ Context
           </Typography>
-          <Typography style={{ marginTop: 16 }} variant="h6">
-            For NZ backed by research
+          <Typography style={{ marginTop: 16 }} variant="body1">
+            Tool built for the NZ context
           </Typography>
         </CardContent>
       </Card>
       <Card
-        style={{ padding: 32, width: "20vw" }}
-        variant="outlined"
-        sx={{ backgroundColor: "background.paper" }}
+        style={{
+          width: "20vw",
+          padding: 16,
+        }}
+        sx={{
+          backgroundColor: "secondary.main",
+          color: "secondary.contrastText",
+          borderRadius: 3,
+          alignContent: "center",
+        }}
       >
         <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" fontWeight={"bold"}>
             Generate
           </Typography>
-          <Typography style={{ marginTop: 16 }} variant="h6">
+          <Typography style={{ marginTop: 16 }} variant="body1">
             Data that is easily customised
           </Typography>
         </CardContent>

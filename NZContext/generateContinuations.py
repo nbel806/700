@@ -3,11 +3,11 @@ import torch
 def generate_continuations(prompts,masks,model_type, num_continuations):
     generator = None
     if model_type == "gpt2":
-        generator = pipeline("text-generation", model="gpt2")
+        generator = pipeline("text-generation", model="gpt2", device_map="auto")
     elif model_type == 'bert':
-        generator = pipeline("text-generation", model="distilbert/distilgpt2")
+        generator = pipeline("text-generation", model="distilbert/distilgpt2",device_map="auto")
     elif model_type == 'phi':
-        generator = pipeline("text-generation", model="microsoft/phi-2", trust_remote_code=True)
+        generator = pipeline("text-generation", model="microsoft/phi-2", trust_remote_code=True, device_map="auto")
     elif model_type == 'llama':
         generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B", model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto") #~2 hours for 2gen
     elif model_type == 'gemma':

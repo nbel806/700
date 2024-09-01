@@ -31,16 +31,7 @@ export async function runPythonScript(prompts, groups, llm, continuations) {
     const { stdout, stderr } = await execPromise(command);
     const stderrLines = stderr.split("\n");
     const filteredStderr = stderrLines
-      .filter(
-        (line) =>
-          !line.includes(
-            "FutureWarning: `clean_up_tokenization_spaces` was not set"
-          ) &&
-          !line.includes("warnings.warn(") &&
-          !line.includes(
-            "Using default facebook/roberta-hate-speech-dynabench-r4-target checkpoint"
-          )
-      )
+      .filter((line) => line.includes("Error") && line.includes("error"))
       .join("\n");
 
     // If there's any error output other than errors that are meant to happen, throw an error

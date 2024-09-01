@@ -111,6 +111,7 @@ export default function Generate() {
           alignItems: "center",
           padding: 2,
           border: "1px solid #f5f5f5",
+          overflow: "visible",
         }}
       >
         <GenerateArea onGenerate={handleGenerate} />

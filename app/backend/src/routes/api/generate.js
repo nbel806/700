@@ -20,8 +20,22 @@ generateRouter.post("/", async (req, res) => {
     const { prompts, groups, llm, continuations } = req.body;
 
     let lowerLLM = "";
-    if (llm === "GPT-2") {
-      lowerLLM = "gpt2";
+    switch (llm) {
+      case "GPT-2":
+        lowerLLM = "gpt2";
+        break;
+      case "BERT":
+        lowerLLM = "bert";
+        break;
+      case "PHI":
+        lowerLLM = "phi";
+        break;
+      case "LLAMA":
+        lowerLLM = "llama";
+        break;
+      case "GEMMA":
+        lowerLLM = "gemma";
+        break;
     }
 
     // Call the Python script

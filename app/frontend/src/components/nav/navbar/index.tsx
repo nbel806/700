@@ -13,11 +13,11 @@ const Navbar = () => {
   const navItems = ["Home", "Tool", "Generate", "About"];
 
   return (
-    <AppBar position="sticky" sx={{ bgcolor: "primary.main" }}>
+    <AppBar position="sticky" sx={{ bgcolor: "primary.main", height: "8vh" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box>
           <Link href="/home">
-            <Typography variant="h5" style={{ marginLeft: 32 }}>
+            <Typography variant="h6" style={{ marginLeft: 32 }}>
               University of Auckland
             </Typography>
           </Link>
