@@ -1,12 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
+import { Box, Typography, Card, FormControlLabel, Radio } from "@mui/material";
 
 interface LLMSProps {
   llms: { name: string; checked: boolean }[];
@@ -16,7 +10,7 @@ interface LLMSProps {
 }
 
 export default function LLMS({ llms, setLLMS }: LLMSProps) {
-  const handleCheckboxChange = (name: string) => {
+  const handleRadioChange = (name: string) => {
     setLLMS((prevLLMS) =>
       prevLLMS.map((llm) =>
         llm.name === name
@@ -29,22 +23,17 @@ export default function LLMS({ llms, setLLMS }: LLMSProps) {
   return (
     <Card
       sx={{
-        flex: 4,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        border: "1px solid #f5f5f5",
+        width: "60%",
       }}
-      style={{ padding: "20px" }}
+      style={{ padding: 8 }}
+      variant="outlined"
     >
-      <Typography
-        variant="h6"
-        align="center"
-        sx={{ marginBottom: 2 }}
-        style={{ marginBottom: "16px" }}
-      >
-        LLMS
+      <Typography variant="h6" align="center" style={{ marginBottom: 2 }}>
+        LLM
       </Typography>
 
       <Box
@@ -56,11 +45,12 @@ export default function LLMS({ llms, setLLMS }: LLMSProps) {
       >
         {llms.map((llm) => (
           <FormControlLabel
+            style={{ padding: 16 }}
             key={llm.name}
             control={
-              <Checkbox
+              <Radio
                 checked={llm.checked}
-                onChange={() => handleCheckboxChange(llm.name)}
+                onChange={() => handleRadioChange(llm.name)}
               />
             }
             label={llm.name}

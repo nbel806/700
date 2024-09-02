@@ -83,15 +83,15 @@ export default function DemographicGroups({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: "100%",
-        border: "1px solid #f5f5f5",
-        padding: "20px",
         overflow: "visible",
+        width: "65%",
+        height: "100%",
         position: "relative",
       }}
-      style={{ padding: "20px" }}
+      variant="outlined"
+      style={{ padding: 16 }}
     >
-      <Typography variant="h6" align="center" style={{ marginBottom: "16px" }}>
+      <Typography variant="h6" style={{ marginBottom: 8 }}>
         Demographic Groups
       </Typography>
 
@@ -99,7 +99,7 @@ export default function DemographicGroups({
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
-          gap: 3,
+          gap: 1,
         }}
       >
         {groups.map((group) => (
@@ -107,6 +107,7 @@ export default function DemographicGroups({
             key={group.name}
             control={
               <Checkbox
+                style={{ padding: 8 }}
                 checked={group.checked}
                 onChange={() => handleCheckboxChange(group.name)}
               />
@@ -116,26 +117,40 @@ export default function DemographicGroups({
           />
         ))}
       </Box>
+      <Tooltip title="Information about the demographic groups">
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            color: "primary",
+          }}
+          aria-label="info"
+          onClick={handleClickOpen}
+        >
+          <InfoIcon sx={{ fontSize: 24 }} />
+        </IconButton>
+      </Tooltip>
 
-      {showTextbox ? (
+      {showTextbox && (
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             gap: 1,
-            minHeight: "35px",
-            width: "50%",
+            width: "100%",
+            marginTop: 2,
           }}
-          style={{ marginTop: "16px" }}
         >
           <TextField
+            variant="outlined"
+            size="small"
             value={newGroup}
             onChange={handleTextboxChange}
             onKeyDown={handleEnterPress}
-            placeholder="Enter new group"
-            sx={{
-              width: "100%",
-            }}
+            placeholder="Enter new prompt"
+            sx={{ flex: 1 }}
+            style={{ padding: 16 }}
           />
           <Button
             variant="contained"
@@ -145,31 +160,18 @@ export default function DemographicGroups({
             Enter
           </Button>
         </Box>
-      ) : (
-        <IconButton
-          color="primary"
-          aria-label="add group"
-          onClick={handleAddClick}
-          style={{ marginTop: "16px" }}
-        >
-          <AddIcon fontSize="large" />
-        </IconButton>
       )}
 
-      <Tooltip title="Information about the demographic groups">
+      {!showTextbox && (
         <IconButton
-          sx={{
-            position: "absolute",
-            top: 20,
-            right: 20,
-            color: "primary",
-          }}
-          aria-label="info"
-          onClick={handleClickOpen}
+          color="primary"
+          aria-label="add prompt"
+          onClick={handleAddClick}
         >
-          <InfoIcon sx={{ fontSize: 36 }} />
+          <AddIcon fontSize="large" />
+          <Typography variant="body1">Add Demographic Group</Typography>
         </IconButton>
-      </Tooltip>
+      )}
 
       <Dialog open={openDialog} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogTitle style={{ paddingTop: 8, textAlign: "center" }}>

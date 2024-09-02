@@ -45,17 +45,19 @@ export default function Continuations({
   return (
     <Card
       sx={{
-        flex: 1,
         display: "flex",
+        width: "40%",
+        height: "100%",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        border: "1px solid #f5f5f5",
         position: "relative",
       }}
+      style={{ padding: 8 }}
+      variant="outlined"
     >
       <Typography variant="h6" style={{ marginBottom: "16px" }}>
-        Continuations
+        Number of continuations
       </Typography>
 
       <TextField
@@ -66,7 +68,7 @@ export default function Continuations({
           max: 999,
           style: {
             textAlign: "center",
-            padding: "0px",
+            padding: "8px 14px",
             height: "auto",
             boxSizing: "border-box",
           },
@@ -88,14 +90,14 @@ export default function Continuations({
         <IconButton
           sx={{
             position: "absolute",
-            top: 20,
-            right: 20,
+            top: 10,
+            right: 10,
             color: "primary",
           }}
           aria-label="info"
           onClick={handleClickOpen}
         >
-          <InfoIcon sx={{ fontSize: 36 }} />
+          <InfoIcon sx={{ fontSize: 24 }} />
         </IconButton>
       </Tooltip>
 

@@ -76,23 +76,18 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
   return (
     <Card
       sx={{
-        width: "100%",
         display: "flex",
         flexDirection: "column",
-        padding: 2,
-        border: "1px solid #f5f5f5",
         overflow: "visible",
         alignItems: "center",
+        width: "35%",
+        height: "100%",
         position: "relative",
       }}
-      style={{ padding: "20px" }}
+      variant="outlined"
+      style={{ padding: 16 }}
     >
-      <Typography
-        variant="h6"
-        align="center"
-        sx={{ marginBottom: 2 }}
-        style={{ marginBottom: "16px" }}
-      >
+      <Typography variant="h6" align="center">
         Prompts
       </Typography>
 
@@ -101,8 +96,8 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
           display: "flex",
           flexDirection: "column",
           gap: 1,
-          width: "85%",
         }}
+        style={{ padding: 16 }}
       >
         {prompts.map((prompt, index) => (
           <Box
@@ -112,12 +107,12 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
               alignItems: "center",
               justifyContent: "space-between",
               border: "1px solid black",
-              padding: 1,
             }}
-            style={{ padding: "10px" }}
+            style={{ padding: 8, borderRadius: 4 }}
           >
             <Typography variant="body1">{prompt.description}</Typography>
             <Checkbox
+              style={{ marginLeft: 8 }}
               checked={prompt.checked}
               onChange={() => handleCheckboxChange(index)}
             />
@@ -159,9 +154,9 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
           color="primary"
           aria-label="add prompt"
           onClick={handleAddClick}
-          style={{ marginTop: "16px" }}
         >
           <AddIcon fontSize="large" />
+          <Typography variant="body1">Add Prompt</Typography>
         </IconButton>
       )}
 
@@ -169,14 +164,14 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
         <IconButton
           sx={{
             position: "absolute",
-            top: 20,
-            right: 20,
+            top: 10,
+            right: 10,
             color: "primary",
           }}
           aria-label="info"
           onClick={handleClickOpen}
         >
-          <InfoIcon sx={{ fontSize: 36 }} />
+          <InfoIcon sx={{ fontSize: 24 }} />
         </IconButton>
       </Tooltip>
 
