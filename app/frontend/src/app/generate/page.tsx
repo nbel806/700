@@ -1,14 +1,23 @@
 "use client";
-import { Box, Card, Button } from "@mui/material";
+import {
+  Box,
+  Card,
+  Button,
+  Typography,
+  Container,
+  IconButton,
+} from "@mui/material";
 
 import { useState } from "react";
 
-import GenerateArea from "@/components/tool/generateArea";
+import GenerateArea from "@/components/generate/generateArea";
 import DemographicGroups from "@/components/generate/demographicGroups";
 import LLMS from "@/components/generate/llms";
 import Prompts from "@/components/generate/prompts";
 import Continuations from "@/components/generate/continuations";
 import axios from "axios";
+import Loading from "@/components/generate/loading";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 export default function Generate() {
   const [continuationsNumber, setContinuationsNumber] = useState<number>(10);
@@ -38,8 +47,10 @@ export default function Generate() {
   ]);
 
   const [isDone, setIsDone] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleGenerate = async () => {
+    setIsLoading(true);
     const checkedLLM = llms.find((llm) => llm.checked)?.name || "";
     const checkedGroups = groups
       .filter((group) => group.checked)
@@ -62,6 +73,7 @@ export default function Generate() {
       );
       if (response.data.isDone == true) {
         setIsDone(true);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error sending data:", error);
@@ -75,57 +87,78 @@ export default function Generate() {
   return (
     <Box
       sx={{
+        height: "100%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-        height: "100vh",
         gap: 2,
+        alignItems: "center",
+        backgroundColor: "background.default",
       }}
-      style={{ padding: "7vh 10vw" }}
+      style={{
+        padding: 32,
+      }}
     >
-      <Box
+      <Typography variant="h3" fontWeight={"bold"} color="primary">
+        Generate
+      </Typography>
+      <Container
         sx={{
           display: "flex",
           flexDirection: "row",
-          width: "100%",
           gap: 2,
-          border: "1px solid #f5f5f5",
+          width: "100%",
+          alignItems: "center",
         }}
+        style={{ width: "100%" }}
       >
         <LLMS llms={llms} setLLMS={setLLMS} />
         <Continuations
           continuationsNumber={continuationsNumber}
           setContinuationsNumber={setContinuationsNumber}
         />
-      </Box>
+      </Container>
 
-      <DemographicGroups groups={groups} setGroups={setGroups} />
-      <Prompts prompts={prompts} setPrompts={setPrompts} />
-
-      <Card
+      <Container
         sx={{
-          width: "50%",
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "row",
+          gap: 2,
+          width: "100%",
           alignItems: "center",
-          padding: 2,
-          border: "1px solid #f5f5f5",
-          overflow: "visible",
         }}
+        style={{ width: "100%" }}
       >
-        <GenerateArea onGenerate={handleGenerate} />
-      </Card>
-      {isDone && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleDownload}
-          sx={{ marginTop: 2 }}
+        {" "}
+        <DemographicGroups groups={groups} setGroups={setGroups} />
+        <Prompts prompts={prompts} setPrompts={setPrompts} />
+      </Container>
+
+      {!isLoading && (
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 2,
+            justifyContent: "center",
+          }}
+          style={{ padding: 16, width: "100%" }}
         >
-          Download
-        </Button>
+          <GenerateArea onGenerate={handleGenerate} />
+          <Button
+            disabled={!isDone}
+            variant="contained"
+            color="secondary"
+            onClick={handleDownload}
+            sx={{ marginTop: 2 }}
+            endIcon={<FileDownloadIcon style={{ fontSize: 32 }} />}
+            style={{ padding: 8, borderRadius: 16, fontSize: 20 }}
+          >
+            Download data
+          </Button>
+        </Container>
       )}
+      {isLoading && <Loading />}
     </Box>
   );
 }
