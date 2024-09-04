@@ -52,8 +52,20 @@ export default function SelectData({
         }}
         style={{ padding: 8 }}
       >
-        <MenuItem value="default_data">Default Data</MenuItem>
-        <MenuItem value="generated_data">Recently Generated Data</MenuItem>
+        <MenuItem
+          value="default_data"
+          style={{ padding: 8 }}
+          sx={{ fontSize: "body1" }}
+        >
+          Default Data
+        </MenuItem>
+        <MenuItem
+          value="generated_data"
+          style={{ padding: 8 }}
+          sx={{ fontSize: "body1" }}
+        >
+          Recently Generated Data
+        </MenuItem>
       </Select>
     </Box>
   );
