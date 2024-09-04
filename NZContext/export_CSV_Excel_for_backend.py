@@ -1,7 +1,8 @@
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 import pandas as pd
+from analyseMetric import analyse_regard_metrics
 
-def export_CSV_Excel(masked_prompt_continuations, regard_metrics, llm_name):
+def export_CSV_Excel(masked_prompt_continuations, regard_metrics, llm_name, num_continuations, prompts, masks, count):
     flat_list = []
     for row in regard_metrics:
          flat_list.extend(row)
@@ -20,21 +21,40 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, llm_name):
     regard_other = regard_flat[3::7]
     regard_difference = regard_flat[4::7]
 
+    analyse_regard_metrics(regard_difference, num_continuations, prompts, masks, llm_name, count)
 
     data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'difference': regard_difference}
 
     df=pd.DataFrame(data)
 
+    if count == 0:
+        wb = Workbook()
+        ws = wb.active
+        ws.title = llm_name
+    else:
+        try:
+            wb = load_workbook('BiasTool.xlsx')
+            ws = wb.create_sheet(title=llm_name)
+        except FileNotFoundError:
+            wb = Workbook()
+            ws = wb.active
+            ws.title = llm_name
+
+#     wb = Workbook()
+#     ws = wb.active
+#     ws.title = llm_name
+
+    ws['A1'] = 'Groups:'
+    ws['B1'] = '[{}]'.format(', '.join('"{}"'.format(item) for item in masks))
+    ws['C1'] = 'Prompts:'
+    ws['D1'] = '[{}]'.format(', '.join('"{}"'.format(item) for item in prompts))
+    ws['E1'] = 'Num Continuations:'
+    ws['F1'] = num_continuations
+    ws['G1'] = 'LLM Model:'
+    ws['H1'] = llm_name
 
 
-
-    wb = Workbook()
-    ws = wb.active
-    ws.title = llm_name
-
-
-
-    start_row_df = 1
+    start_row_df = 3
 
 
     for col_idx, col_name in enumerate(df.columns, start=1):

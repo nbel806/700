@@ -7,7 +7,7 @@ const scoreRouter = Router();
 scoreRouter.get("/:llm", async (req, res) => {
   const { llm } = req.params;
   try {
-    const score = getLLMScore(llm);
+    const score = getLLMScore(llm, req.dataSource);
     res.status(200).json({ score });
   } catch (error) {
     res.status(500).json({ error: `Failed to retrieve the score for ${llm}.` });

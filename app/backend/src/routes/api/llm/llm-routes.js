@@ -1,12 +1,15 @@
 import { Router } from "express";
 import { getLLMNames } from "../../../data/data.js";
+import { dataSourceMiddleware } from "./middleware.js";
 const llmRoutes = Router();
+
+llmRoutes.use(dataSourceMiddleware);
 
 // GET /api/llm
 // What LLMS exist?
 llmRoutes.get("/", async (req, res) => {
   try {
-    const names = getLLMNames();
+    const names = getLLMNames(req.dataSource);
     res.status(200).json(names);
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve LLM names." });

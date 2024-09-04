@@ -2,15 +2,15 @@ from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
 import torch
 def generate_continuations(prompts,masks,model_type, num_continuations):
     generator = None
-    if model_type == "gpt2":
+    if model_type == "GPT-2":
         generator = pipeline("text-generation", model="gpt2", device_map="auto")
-    elif model_type == 'bert':
+    elif model_type == 'BERT':
         generator = pipeline("text-generation", model="distilbert/distilgpt2",device_map="auto")
-    elif model_type == 'phi':
+    elif model_type == 'PHI':
         generator = pipeline("text-generation", model="microsoft/phi-2", trust_remote_code=True, device_map="auto")
-    elif model_type == 'llama':
+    elif model_type == 'LLAMA':
         generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B", model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto") #~2 hours for 2gen
-    elif model_type == 'gemma':
+    elif model_type == 'GEMMA':
         generator = pipeline("text-generation", model="google/gemma-7b", model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto") #Long run plus repeating output
 
     unmasked_prompts = []
@@ -32,6 +32,7 @@ def generate_continuations(prompts,masks,model_type, num_continuations):
             continuations_group.append(continuation)
         continuations.append(continuations_group)
     return continuations
+
 
 
 

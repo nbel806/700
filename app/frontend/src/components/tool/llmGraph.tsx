@@ -38,13 +38,19 @@ interface LLMGraphProps {
   llm1: string;
   llm2: string;
   llmGroups: Group[];
+  selectedData: string;
 }
 interface Data {
   name: string;
   difference: number;
 }
 
-export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
+export default function LLMGraph({
+  llm1,
+  llm2,
+  llmGroups,
+  selectedData,
+}: LLMGraphProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [llm1Data, setLlm1Data] = useState<DemographicGroupData[]>([]);
   const [llm2Data, setLlm2Data] = useState<DemographicGroupData[]>([]);
@@ -72,7 +78,12 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/llm/group/data/${llm}/true`
+        `http://localhost:3000/api/llm/group/data/${llm}/true`,
+        {
+          params: {
+            selectedData,
+          },
+        }
       );
       setData(response.data);
     } catch (error) {
@@ -86,13 +97,13 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
     if (llm1) {
       fetchData(llm1, setLlm1Data);
     }
-  }, [llm1]);
+  }, [llm1, selectedData]);
 
   useEffect(() => {
     if (llm2) {
       fetchData(llm2, setLlm2Data);
     }
-  }, [llm2]);
+  }, [llm2, selectedData]);
 
   useEffect(() => {
     let groups: string[] = [];

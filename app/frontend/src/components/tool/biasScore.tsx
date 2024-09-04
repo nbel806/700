@@ -20,9 +20,14 @@ import axios from "axios";
 interface BiasScoreProps {
   llm1: string;
   llm2: string;
+  selectedData: string;
 }
 
-export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
+export default function BiasScore({
+  llm1,
+  llm2,
+  selectedData,
+}: BiasScoreProps) {
   const [openDialog, setOpenDialog] = useState(false);
   const [llm1Score, setLlm1Score] = useState<number | null>(null);
   const [llm2Score, setLlm2Score] = useState<number | null>(null);
@@ -45,7 +50,12 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
     setError(null);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/llm/score/${llm}`
+        `http://localhost:3000/api/llm/score/${llm}`,
+        {
+          params: {
+            selectedData,
+          },
+        }
       );
       setScore(response.data.score);
     } catch (error) {
@@ -60,13 +70,13 @@ export default function BiasScore({ llm1, llm2 }: BiasScoreProps) {
     if (llm1) {
       fetchBiasScore(llm1, setLlm1Score);
     }
-  }, [llm1]);
+  }, [llm1, selectedData]);
 
   useEffect(() => {
     if (llm2) {
       fetchBiasScore(llm2, setLlm2Score);
     }
-  }, [llm2]);
+  }, [llm2, selectedData]);
 
   return (
     <Box

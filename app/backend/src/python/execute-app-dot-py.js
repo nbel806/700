@@ -6,7 +6,7 @@ import { resolve } from "path";
 const execPromise = promisify(exec);
 
 // Function to run the Python script with arguments
-export async function runPythonScript(prompts, groups, llm, continuations) {
+export async function runPythonScript(prompts, groups, llms, continuations) {
   const executablePath = resolve(
     process.cwd(),
     "../../NZContext/app_for_backend.py"
@@ -15,12 +15,13 @@ export async function runPythonScript(prompts, groups, llm, continuations) {
   // Convert arguments to JSON strings and escape quotes
   const promptsJson = JSON.stringify(prompts).replace(/"/g, '\\"');
   const groupsJson = JSON.stringify(groups).replace(/"/g, '\\"');
+  const llmsJson = JSON.stringify(llms).replace(/"/g, '\\"');
 
   // Prepare the arguments for the Python script
   const args = [
     `--prompts="${promptsJson}"`,
     `--masks="${groupsJson}"`,
-    `--model_type=${llm}`,
+    `--llms="${llmsJson}"`,
     `--num_continuations=${continuations}`,
   ].join(" ");
 
