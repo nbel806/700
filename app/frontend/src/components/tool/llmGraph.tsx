@@ -154,7 +154,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
       },
       title: {
         display: true,
-        text: "Continuation difference between LLMs",
+        text: "Demographic group bias between LLMs",
         font: {
           family: "Arial" as const,
           size: 30,
@@ -172,7 +172,7 @@ export default function LLMGraph({ llm1, llm2, llmGroups }: LLMGraphProps) {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Positive - Negative generation",
+          text: "LLM Generation bias",
           font: {
             family: "Arial" as const,
             size: 16,
