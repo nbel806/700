@@ -52,6 +52,8 @@ export default function LLMCompare({
         }
         if (names.length > 1 && !llm2) {
           setLlm2(names[1]);
+        } else if (names.length === 1) {
+          setLlm2(names[0]);
         }
         setLoading(false);
       } catch (error) {
