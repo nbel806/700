@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Select,
@@ -8,6 +8,7 @@ import {
   SelectChangeEvent,
   MenuItem,
 } from "@mui/material";
+import axios from "axios";
 
 export default function SelectData({
   selectedData,
@@ -16,9 +17,33 @@ export default function SelectData({
   selectedData: string;
   setSelectedData: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const [generateData, setGenerateData] = useState(false);
+
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedData(event.target.value);
   };
+
+  const checkGenerateData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/llm`, {
+        params: {
+          selectedData: "generated_data",
+        },
+      });
+      if ((await response.data.length) > 0) {
+        setGenerateData(true);
+        console.log(true);
+      }
+    } catch (error) {
+      setGenerateData(false);
+      console.log(false);
+    }
+  };
+
+  useEffect(() => {
+    checkGenerateData();
+  }, [selectedData]);
+
   return (
     <Box
       sx={{
@@ -59,13 +84,15 @@ export default function SelectData({
         >
           Default Data
         </MenuItem>
-        <MenuItem
-          value="generated_data"
-          style={{ padding: 8 }}
-          sx={{ fontSize: "body1" }}
-        >
-          Recently Generated Data
-        </MenuItem>
+        {generateData && (
+          <MenuItem
+            value="generated_data"
+            style={{ padding: 8 }}
+            sx={{ fontSize: "body1" }}
+          >
+            Recently Generated Data
+          </MenuItem>
+        )}
       </Select>
     </Box>
   );
