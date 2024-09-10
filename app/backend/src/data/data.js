@@ -1,14 +1,10 @@
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
-const data = require("../data/llm.json");
-
 /**
  * Retrieves a list of all LLM names from the data.
  *
  * @return {string[]} An array of LLM names
  */
-const getLLMNames = () => {
-  var llmNames = [];
+const getLLMNames = (data) => {
+  let llmNames = [];
   data.llms.forEach((llm) => {
     llmNames.push(llm.name);
   });
@@ -23,7 +19,7 @@ const getLLMNames = () => {
  * @param {boolean} isGrouped - Whether to get grouped (true) or ungrouped (false) demographic groups
  * @return {object[]} An array of objects containing demographic group names
  */
-const getDemographicGroups = (llmName, isGrouped) => {
+const getDemographicGroups = (llmName, isGrouped, data) => {
   var demographicGroups = [];
   const llm = data.llms.find((llm) => {
     return llm.name === llmName;
@@ -47,7 +43,7 @@ const getDemographicGroups = (llmName, isGrouped) => {
  * @param {string} llmName - The name of the LLM to retrieve grouped data for
  * @return {object[]} An array of objects containing grouped data
  */
-const getLLMDataGrouped = (llmName) => {
+const getLLMDataGrouped = (llmName, data) => {
   const llm = data.llms.find((llm) => {
     return llm.name === llmName;
   });
@@ -60,7 +56,7 @@ const getLLMDataGrouped = (llmName) => {
  * @param {string} llmName - The name of the LLM to retrieve ungrouped data for
  * @return {object[]} An array of objects containing ungrouped data
  */
-const getLLMDataUngrouped = (llmName) => {
+const getLLMDataUngrouped = (llmName, data) => {
   const llm = data.llms.find((llm) => {
     return llm.name === llmName;
   });
@@ -73,7 +69,7 @@ const getLLMDataUngrouped = (llmName) => {
  * @param {string} llmName - The name of the LLM to retrieve the score for
  * @return {number} The score of the LLM
  */
-const getLLMScore = (llmName) => {
+const getLLMScore = (llmName, data) => {
   const llm = data.llms.find((llm) => {
     return llm.name === llmName;
   });

@@ -16,7 +16,7 @@ groupRouter.get("/:llm/:grouped?", async (req, res) => {
     grouped !== undefined ? grouped.toLowerCase() === "true" : true;
 
   try {
-    const groups = getDemographicGroups(llm, isGrouped);
+    const groups = getDemographicGroups(llm, isGrouped, req.dataSource);
     res.status(200).json(groups);
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ groupRouter.get("/data/:llm/:grouped", async (req, res) => {
   const { grouped } = req.params;
   if (grouped === "true") {
     try {
-      const groupedData = getLLMDataGrouped(llm);
+      const groupedData = getLLMDataGrouped(llm, req.dataSource);
       res.status(200).json(groupedData);
     } catch (error) {
       res

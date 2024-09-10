@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import LLMCompare from "@/components/tool/llmCompare";
 import LLMGroups from "@/components/tool/llmGroups";
 import BiasScore from "@/components/tool/biasScore";
-// import GenerateArea from "@/components/tool/generateArea";
 import axios from "axios";
 import LLMGraph from "@/components/tool/llmGraph";
+import SelectData from "@/components/tool/selectData";
+import { useSearchParams } from "next/navigation";
 
 export interface Group {
   name: string;
@@ -15,12 +16,16 @@ export interface Group {
 }
 
 export default function Tool() {
+  const searchParams = useSearchParams();
   const [llm1, setLlm1] = useState<string>("");
   const [llm2, setLlm2] = useState<string>("");
   const [llm1Groups, setLlm1Groups] = useState<Group[]>([]);
   const [llm2Groups, setLlm2Groups] = useState<Group[]>([]);
   const [llmGroupsIntersection, setLlmGroupsIntersection] = useState<Group[]>(
     []
+  );
+  const [selectedData, setSelectedData] = useState<string>(
+    () => searchParams.get("selectedData") || "default_data"
   );
 
   const fetchGroups = async (
@@ -29,7 +34,12 @@ export default function Tool() {
   ) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/llm/group/${llm}/true`
+        `http://localhost:3000/api/llm/group/${llm}/true`,
+        {
+          params: {
+            selectedData,
+          },
+        }
       );
       setGroups(
         response.data.map((group: any) => ({ name: group, checked: true }))
@@ -43,13 +53,13 @@ export default function Tool() {
     if (llm1) {
       fetchGroups(llm1, setLlm1Groups);
     }
-  }, [llm1]);
+  }, [llm1, selectedData]);
 
   useEffect(() => {
     if (llm2) {
       fetchGroups(llm2, setLlm2Groups);
     }
-  }, [llm2]);
+  }, [llm2, selectedData]);
 
   useEffect(() => {
     if (llm1Groups.length > 0 && llm2Groups.length > 0) {
@@ -98,6 +108,7 @@ export default function Tool() {
               llm1={llm1}
               llm2={llm2}
               llmGroups={llmGroupsIntersection}
+              selectedData={selectedData}
             />
           </Box>
           <Box
@@ -114,7 +125,7 @@ export default function Tool() {
               alignItems: "center",
             }}
           >
-            <BiasScore llm1={llm1} llm2={llm2} />
+            <BiasScore llm1={llm1} llm2={llm2} selectedData={selectedData} />
           </Box>
         </Grid>
 
@@ -144,6 +155,7 @@ export default function Tool() {
                 setLlm1={setLlm1}
                 llm2={llm2}
                 setLlm2={setLlm2}
+                selectedData={selectedData}
               />
             </Box>
             <Box
@@ -156,12 +168,18 @@ export default function Tool() {
                 onCheckChange={handleCheckChange}
               />
             </Box>
-            {/* <Box
+            <Box
               flex="1"
-              style={{ backgroundColor: "#b0b0b0", padding: "3vh" }}
+              sx={{
+                backgroundColor: "background.default",
+              }}
+              style={{ padding: 16 }}
             >
-              <GenerateArea />
-            </Box> */}
+              <SelectData
+                selectedData={selectedData}
+                setSelectedData={setSelectedData}
+              />
+            </Box>
           </Box>
         </Grid>
       </Grid>

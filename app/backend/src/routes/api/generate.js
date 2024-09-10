@@ -17,36 +17,17 @@ const generateRouter = Router();
 
 generateRouter.post("/", async (req, res) => {
   try {
-    const { prompts, groups, llm, continuations } = req.body;
-
-    let lowerLLM = "";
-    switch (llm) {
-      case "GPT-2":
-        lowerLLM = "gpt2";
-        break;
-      case "BERT":
-        lowerLLM = "bert";
-        break;
-      case "PHI":
-        lowerLLM = "phi";
-        break;
-      case "LLAMA":
-        lowerLLM = "llama";
-        break;
-      case "GEMMA":
-        lowerLLM = "gemma";
-        break;
-    }
+    const { prompts, groups, llms, continuations } = req.body;
+    console.log("generating", llms);
 
     // Call the Python script
     const { stdout, isDone } = await runPythonScript(
       prompts,
       groups,
-      lowerLLM,
+      llms,
       continuations
     );
 
-    // Send the output as a response
     res.json({ output: stdout, isDone });
   } catch (error) {
     res.status(500).json({ error: error.message });

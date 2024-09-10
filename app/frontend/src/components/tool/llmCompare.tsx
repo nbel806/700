@@ -14,6 +14,7 @@ interface LLMCompareProps {
   setLlm1: React.Dispatch<React.SetStateAction<string>>;
   llm2: string;
   setLlm2: React.Dispatch<React.SetStateAction<string>>;
+  selectedData: string;
 }
 
 export default function LLMCompare({
@@ -21,6 +22,7 @@ export default function LLMCompare({
   setLlm1,
   llm2,
   setLlm2,
+  selectedData,
 }: LLMCompareProps) {
   const [llmNames, setLlmNames] = React.useState<string[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -37,7 +39,11 @@ export default function LLMCompare({
   useEffect(() => {
     const fetchLlmNames = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/llm");
+        const response = await axios.get("http://localhost:3000/api/llm", {
+          params: {
+            selectedData,
+          },
+        });
         const names = response.data;
         setLlmNames(names);
 
@@ -55,7 +61,7 @@ export default function LLMCompare({
     };
 
     fetchLlmNames();
-  }, [llm1, llm2]);
+  }, [llm1, llm2, selectedData]);
 
   return (
     <Box

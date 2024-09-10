@@ -1,6 +1,12 @@
 "use client";
 import React from "react";
-import { Box, Typography, Card, FormControlLabel, Radio } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Card,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 
 interface LLMSProps {
   llms: { name: string; checked: boolean }[];
@@ -10,12 +16,10 @@ interface LLMSProps {
 }
 
 export default function LLMS({ llms, setLLMS }: LLMSProps) {
-  const handleRadioChange = (name: string) => {
+  const handleCheckboxChange = (name: string) => {
     setLLMS((prevLLMS) =>
       prevLLMS.map((llm) =>
-        llm.name === name
-          ? { ...llm, checked: true }
-          : { ...llm, checked: false }
+        llm.name === name ? { ...llm, checked: !llm.checked } : llm
       )
     );
   };
@@ -48,9 +52,9 @@ export default function LLMS({ llms, setLLMS }: LLMSProps) {
             style={{ padding: 16 }}
             key={llm.name}
             control={
-              <Radio
+              <Checkbox
                 checked={llm.checked}
-                onChange={() => handleRadioChange(llm.name)}
+                onChange={() => handleCheckboxChange(llm.name)}
               />
             }
             label={llm.name}

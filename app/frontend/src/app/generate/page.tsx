@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import GenerateArea from "@/components/generate/generateArea";
 import DemographicGroups from "@/components/generate/demographicGroups";
@@ -20,6 +21,7 @@ import Loading from "@/components/generate/loading";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 export default function Generate() {
+  const router = useRouter();
   const [continuationsNumber, setContinuationsNumber] = useState<number>(10);
   const [groups, setGroups] = useState<{ name: string; checked: boolean }[]>([
     { name: "Brown Maori", checked: true },
@@ -51,7 +53,9 @@ export default function Generate() {
 
   const handleGenerate = async () => {
     setIsLoading(true);
-    const checkedLLM = llms.find((llm) => llm.checked)?.name || "";
+    const checkedLLMs = llms
+      .filter((llm) => llm.checked)
+      .map((llm) => llm.name);
     const checkedGroups = groups
       .filter((group) => group.checked)
       .map((group) => group.name);
@@ -60,7 +64,7 @@ export default function Generate() {
       .map((prompt) => prompt.description);
 
     const requestBody = {
-      llm: checkedLLM,
+      llms: checkedLLMs,
       continuations: continuationsNumber,
       groups: checkedGroups,
       prompts: checkedPrompts,
@@ -82,6 +86,10 @@ export default function Generate() {
 
   const handleDownload = () => {
     window.location.href = "http://localhost:3000/api/generate/download";
+  };
+
+  const handleAnalyse = () => {
+    router.push(`/tool?selectedData=generated_data`);
   };
 
   return (
@@ -155,6 +163,17 @@ export default function Generate() {
             style={{ padding: 8, borderRadius: 16, fontSize: 20 }}
           >
             Download data
+          </Button>
+          <Button
+            disabled={!isDone}
+            variant="contained"
+            color="secondary"
+            onClick={handleAnalyse}
+            sx={{ marginTop: 2 }}
+            // endIcon={<FileDownloadIcon style={{ fontSize: 32 }} />}
+            style={{ padding: 8, borderRadius: 16, fontSize: 20 }}
+          >
+            Analyse data
           </Button>
         </Container>
       )}
