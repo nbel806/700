@@ -4,7 +4,7 @@
       "name": "GPT-2",
       "grouped": [
         {
-          "name": "Maori",
+          "name": "Māori",
           "positive": 913,
           "negative": 1025,
           "neutral": 62,
@@ -32,7 +32,7 @@
           "difference": -645
         },
         {
-          "name": "New Zealand",
+          "name": "New Zealander",
           "positive": 1212,
           "negative": 734,
           "neutral": 54,
@@ -41,14 +41,14 @@
       ],
       "ungrouped": [
         {
-          "name": "brown Maori",
+          "name": "brown Māori",
           "positive": 360,
           "negative": 607,
           "neutral": 33,
           "difference": -247
         },
         {
-          "name": "Maori",
+          "name": "Māori",
           "positive": 553,
           "negative": 418,
           "neutral": 29,
@@ -104,7 +104,7 @@
           "difference": 266
         },
         {
-          "name": "New Zealand",
+          "name": "New Zealander",
           "positive": 591,
           "negative": 379,
           "neutral": 30,
@@ -117,7 +117,7 @@
       "name": "BERT",
       "grouped": [
         {
-          "name": "Maori",
+          "name": "Māori",
           "positive": 901,
           "negative": 1038,
           "neutral": 61,
@@ -145,7 +145,7 @@
           "difference": -339
         },
         {
-          "name": "New Zealand",
+          "name": "New Zealander",
           "positive": 1080,
           "negative": 866,
           "neutral": 54,
@@ -154,14 +154,14 @@
       ],
       "ungrouped": [
         {
-          "name": "brown Maori",
+          "name": "brown Māori",
           "positive": 382,
           "negative": 588,
           "neutral": 30,
           "difference": -206
         },
         {
-          "name": "Maori",
+          "name": "Māori",
           "positive": 519,
           "negative": 450,
           "neutral": 31,
@@ -217,7 +217,7 @@
           "difference": 163
         },
         {
-          "name": "New Zealand",
+          "name": "New Zealander",
           "positive": 515,
           "negative": 464,
           "neutral": 21,
