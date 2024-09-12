@@ -39,6 +39,7 @@ interface LLMGraphProps {
   llm2: string;
   llmGroups: Group[];
   selectedData: string;
+  namesAreChanged: boolean;
 }
 
 export default function LLMGraph({
@@ -46,6 +47,7 @@ export default function LLMGraph({
   llm2,
   llmGroups,
   selectedData,
+  namesAreChanged,
 }: LLMGraphProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [llm1Data, setLlm1Data] = useState<DemographicGroupData[]>([]);
@@ -93,13 +95,13 @@ export default function LLMGraph({
     if (llm1) {
       fetchData(llm1, setLlm1Data);
     }
-  }, [llm1, selectedData]);
+  }, [llm1, namesAreChanged]);
 
   useEffect(() => {
     if (llm2) {
       fetchData(llm2, setLlm2Data);
     }
-  }, [llm2, selectedData]);
+  }, [llm2, namesAreChanged]);
 
   useEffect(() => {
     let groups: string[] = [];

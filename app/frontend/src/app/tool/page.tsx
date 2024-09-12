@@ -27,6 +27,7 @@ export default function Tool() {
   const [selectedData, setSelectedData] = useState<string>(
     () => searchParams.get("selectedData") || "default_data"
   );
+  const [namesAreChanged, setNamesAreChanged] = useState<boolean>(false);
 
   const fetchGroups = async (
     llm: string,
@@ -53,13 +54,15 @@ export default function Tool() {
     if (llm1) {
       fetchGroups(llm1, setLlm1Groups);
     }
-  }, [llm1, selectedData]);
+  }, [llm1, namesAreChanged]);
 
   useEffect(() => {
     if (llm2) {
       fetchGroups(llm2, setLlm2Groups);
+    } else {
+      setLlm2Groups([]);
     }
-  }, [llm2, selectedData]);
+  }, [llm2, namesAreChanged]);
 
   useEffect(() => {
     if (llm1Groups.length > 0 && llm2Groups.length > 0) {
@@ -109,6 +112,7 @@ export default function Tool() {
               llm2={llm2}
               llmGroups={llmGroupsIntersection}
               selectedData={selectedData}
+              namesAreChanged={namesAreChanged}
             />
           </Box>
           <Box
@@ -125,7 +129,12 @@ export default function Tool() {
               alignItems: "center",
             }}
           >
-            <BiasScore llm1={llm1} llm2={llm2} selectedData={selectedData} />
+            <BiasScore
+              llm1={llm1}
+              llm2={llm2}
+              selectedData={selectedData}
+              namesAreChanged={namesAreChanged}
+            />
           </Box>
         </Grid>
 
@@ -156,6 +165,8 @@ export default function Tool() {
                 llm2={llm2}
                 setLlm2={setLlm2}
                 selectedData={selectedData}
+                setNamesAreChanged={setNamesAreChanged}
+                namesAreChanged={namesAreChanged}
               />
             </Box>
             <Box
