@@ -9,7 +9,7 @@ const execPromise = promisify(exec);
 export async function runPythonScript(prompts, groups, llms, continuations) {
   const executablePath = resolve(
     process.cwd(),
-    "../../NZContext/app_for_backend.py"
+    "src/python/generate/app_for_backend.py"
   );
 
   // Convert arguments to JSON strings and escape quotes
