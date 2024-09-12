@@ -21,12 +21,14 @@ interface BiasScoreProps {
   llm1: string;
   llm2: string;
   selectedData: string;
+  namesAreChanged: boolean;
 }
 
 export default function BiasScore({
   llm1,
   llm2,
   selectedData,
+  namesAreChanged,
 }: BiasScoreProps) {
   const [openDialog, setOpenDialog] = useState(false);
   const [llm1Score, setLlm1Score] = useState<number | null>(null);
@@ -70,13 +72,13 @@ export default function BiasScore({
     if (llm1) {
       fetchBiasScore(llm1, setLlm1Score);
     }
-  }, [llm1, selectedData]);
+  }, [llm1, namesAreChanged]);
 
   useEffect(() => {
     if (llm2) {
       fetchBiasScore(llm2, setLlm2Score);
     }
-  }, [llm2, selectedData]);
+  }, [llm2, namesAreChanged]);
 
   return (
     <Box

@@ -15,6 +15,13 @@ interface LLMCompareProps {
   llm2: string;
   setLlm2: React.Dispatch<React.SetStateAction<string>>;
   selectedData: string;
+  setNamesAreChanged: React.Dispatch<React.SetStateAction<boolean>>;
+  namesAreChanged: boolean;
+}
+
+export interface Group {
+  name: string;
+  checked: boolean;
 }
 
 export default function LLMCompare({
@@ -23,6 +30,8 @@ export default function LLMCompare({
   llm2,
   setLlm2,
   selectedData,
+  setNamesAreChanged,
+  namesAreChanged,
 }: LLMCompareProps) {
   const [llmNames, setLlmNames] = React.useState<string[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -47,12 +56,15 @@ export default function LLMCompare({
         const names = response.data;
         setLlmNames(names);
 
-        if (names.length > 0 && !llm1) {
+        if (names.length > 0) {
           setLlm1(names[0]);
         }
-        if (names.length > 1 && !llm2) {
+        if (names.length > 1) {
           setLlm2(names[1]);
+        } else if (names.length === 1) {
+          setLlm2("");
         }
+        setNamesAreChanged(!namesAreChanged);
         setLoading(false);
       } catch (error) {
         setError("Failed to fetch LLM names");
@@ -61,7 +73,7 @@ export default function LLMCompare({
     };
 
     fetchLlmNames();
-  }, [llm1, llm2, selectedData]);
+  }, [selectedData]);
 
   return (
     <Box
