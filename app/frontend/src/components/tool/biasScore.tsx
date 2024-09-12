@@ -144,20 +144,27 @@ export default function BiasScore({
             <Typography color="primary">Loading LLM1</Typography>
           )}
         </Box>
+
         <Typography
           variant="body1"
           color="primary"
           sx={{ flex: 1, textAlign: "center" }}
         >
-          vs
+          {llm2 !== "" ? "vs" : ""}
         </Typography>
         <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
           {loading ? (
             <Typography color="primary">Loading...</Typography>
           ) : llm2Score !== null ? (
-            <Rating value={llm2Score} precision={0.1} readOnly />
+            <>
+              {llm2 !== "" && (
+                <Rating value={llm2Score} precision={0.1} readOnly />
+              )}
+            </>
           ) : (
-            <Typography color="primary">Loading LLM2</Typography>
+            <Typography color="primary">
+              {llm2 !== "" ? "Loading LLM2" : ""}
+            </Typography>
           )}
         </Box>
       </Box>
