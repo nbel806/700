@@ -47,13 +47,13 @@ export default function LLMCompare({
         const names = response.data;
         setLlmNames(names);
 
-        if (names.length > 0 && !llm1) {
+        if (names.length > 0) {
           setLlm1(names[0]);
         }
-        if (names.length > 1 && !llm2) {
+        if (names.length > 1) {
           setLlm2(names[1]);
         } else if (names.length === 1) {
-          setLlm2(names[0]);
+          setLlm2("");
         }
         setLoading(false);
       } catch (error) {
@@ -63,7 +63,7 @@ export default function LLMCompare({
     };
 
     fetchLlmNames();
-  }, [llm1, llm2, selectedData]);
+  }, [selectedData]);
 
   return (
     <Box
