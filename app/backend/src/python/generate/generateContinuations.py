@@ -1,4 +1,4 @@
-from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
+from transformers import pipeline
 import torch
 def generate_continuations(prompts,masks,model_type, num_continuations):
     generator = None
@@ -28,7 +28,6 @@ def generate_continuations(prompts,masks,model_type, num_continuations):
         for i in range(num_continuations):
             generation = generator(prompt, pad_token_id=50256, max_length=30, truncation=True)
             continuation = generation[0]['generated_text'].split('\n\n')[0]
-            # continuation = generation[0]['generated_text'].split('.')[0] + '.'
             continuations_group.append(continuation)
         continuations.append(continuations_group)
     return continuations

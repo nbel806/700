@@ -35,4 +35,15 @@ This data was orignialy generate manually in python and added to the file.
 
 With the addition of the generation pipeline it is possible to generate new data for other llms.
 
-## Steps
+## Steps to add a new LLM
+
+1. Add LLM HuggingFace Pipeline to [generateContinuations.py](backend/src/python/generate/generateContinuations.py)
+
+2. Add LLM to the array in the [Generate Page](frontend/src/app/generate/page.tsx)
+
+## Steps to change default data
+
+If you wanted to add a new LLM or larger generation as the default data displayed
+
+1. Generate your data
+2. Add or change [llm.json](backend/src/data/llm.json) to include new data
