@@ -3,7 +3,6 @@ import pandas as pd
 from analyseMetric import analyse_regard_metrics
 
 def export_CSV_Excel(masked_prompt_continuations, regard_metrics, llm_name, num_continuations, prompts, masks, count):
-    print(regard_metrics)
     flat_list = []
     for row in regard_metrics:
          flat_list.extend(row)
