@@ -1,6 +1,6 @@
 
 from huggingface_hub import login
-login(token='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')
+login(token='')# YOUR_TOKEN_HERE
 
 from datasets import load_dataset
 
