@@ -10,9 +10,10 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about our frontend, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [MUI](https://mui.com/) - the component library and design system we used.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/)
