@@ -3,3 +3,4 @@ HuggingFace/.ipynb_checkpoints/*
 .idea/*
 BiasTool.*
 */__pycache__
+app/backend/src/data/llm_generated.json
