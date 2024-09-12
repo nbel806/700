@@ -20,11 +20,11 @@ def evaluate_regard(data):
             positive_negative_difference = sorted_result[0]["score"]-sorted_result[1]["score"]
             regard_result_list_individual.append(positive_negative_difference)
             if(positive_negative_difference>0.1):
-                regard_result_list_individual.append(1)
-            elif(positive_negative_difference<-0.1):
-                regard_result_list_individual.append(-1)
+                regard_result_list_individual.append("pos")
+            elif(positive_negative_difference<0):
+                regard_result_list_individual.append("neg")
             else:
-                regard_result_list_individual.append(0)
+                regard_result_list_individual.append("neu")
 
             
             if(positive_negative_difference>0.05):
