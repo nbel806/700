@@ -5,3 +5,4 @@ BiasTool.*
 */__pycache__
 app/backend/src/data/llm_generated.json
 app/backend/src/python/generate/__pycache__
+.venv
