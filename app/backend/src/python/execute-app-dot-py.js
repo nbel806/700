@@ -7,6 +7,11 @@ const execPromise = promisify(exec);
 
 // Function to run the Python script with arguments
 export async function runPythonScript(prompts, groups, llms, continuations) {
+  // Path to the Python executable inside the virtual environment
+  const pythonPath = resolve(
+    "D:/natha/Downloads1/700/700/.venv/Scripts/python.exe"
+  );
+
   const executablePath = resolve(
     process.cwd(),
     "src/python/generate/app_for_backend.py"
@@ -26,7 +31,7 @@ export async function runPythonScript(prompts, groups, llms, continuations) {
   ].join(" ");
 
   // Execute the Python script
-  const command = `python3 ${executablePath} ${args}`;
+  const command = `${pythonPath} ${executablePath} ${args}`;
   console.log(`Executing command: ${command}`);
   try {
     const { stdout, stderr } = await execPromise(command);
