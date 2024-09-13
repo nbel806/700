@@ -18,6 +18,31 @@ npm run start
 
 Ensure you have python3 installed
 
+Windows
+
+```bash
+py -m venv .venv
+.venv\Scripts\activate
+py -m pip install -r requirements.txt
+```
+
+Unix/maacOS
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+Change the path of the python exe in [execute app js](backend\src\python\execute-app-dot-py.js)
+
+Full path should look something like this
+D:/natha/Downloads1/700/.venv/Scripts/python.exe\*
+
+\* Ensure foward slash
+
+You will need to relaunch backend server forr this to take effect
+
 ## Frontend
 
 ```bash
