@@ -34,15 +34,6 @@ source .venv/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
-Change the path of the python exe in [execute app js](backend\src\python\execute-app-dot-py.js)
-
-Full path should look something like this
-D:/natha/Downloads1/700/.venv/Scripts/python.exe\*
-
-\* Ensure foward slash
-
-You will need to relaunch backend server forr this to take effect
-
 ## Frontend
 
 ```bash

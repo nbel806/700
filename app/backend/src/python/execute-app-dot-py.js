@@ -1,17 +1,31 @@
 import { exec } from "child_process";
 import { promisify } from "util";
 import { resolve } from "path";
+import { platform } from "os";
 
 // Convert exec to return a promise
 const execPromise = promisify(exec);
 
+// Function to detect Python interpreter in venv
+function getPythonPath() {
+  const rootDir = resolve(process.cwd(), "..", "..");
+  const isWindows = platform() === "win32";
+  // Automatically resolve the correct path to the venv's Python interpreter
+  const pythonPath = resolve(
+    rootDir,
+    ".venv",
+    isWindows ? "Scripts" : "bin",
+    "python"
+  );
+
+  return pythonPath;
+}
+
 // Function to run the Python script with arguments
 export async function runPythonScript(prompts, groups, llms, continuations) {
   // Path to the Python executable inside the virtual environment
-  const pythonPath = resolve(
-    "D:/natha/Downloads1/700/700/.venv/Scripts/python.exe"
-  );
-
+  const pythonPath = getPythonPath();
+  console.log(pythonPath);
   const executablePath = resolve(
     process.cwd(),
     "src/python/generate/app_for_backend.py"
