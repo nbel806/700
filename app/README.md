@@ -2,17 +2,13 @@
 
 Run the backend before frontend
 
+```bash
+cd app
+```
+
 ## Backend
 
 The server is required for the app but the python side is only required if you plan on generating data with the tool.
-
-### Server
-
-```bash
-cd backend
-npm i
-npm run start
-```
 
 ### Python (for generating new continuation)
 
@@ -32,6 +28,14 @@ Unix/maacOS
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
+```
+
+### Server
+
+```bash
+cd backend
+npm i
+npm run start
 ```
 
 ## Frontend
