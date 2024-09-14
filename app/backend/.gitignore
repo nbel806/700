@@ -15,4 +15,6 @@ build/
 .DS_Store
 Thumbs.db
 
+src/python/generate/__pycache__
+src/data/llm_generated
 ~$*.xlsx
