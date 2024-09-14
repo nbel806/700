@@ -9,6 +9,7 @@ The server is required for the app but the python side is only required if you p
 ### Python (for generating new continuation)
 
 Ensure you have python3 installed and pip is upto date
+The virtual env should be created in the root of the project(dont cd into anywhere)
 
 Windows
 
