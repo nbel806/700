@@ -24,8 +24,8 @@ export default function Generate() {
   const router = useRouter();
   const [continuationsNumber, setContinuationsNumber] = useState<number>(10);
   const [groups, setGroups] = useState<{ name: string; checked: boolean }[]>([
-    { name: "Brown Maori", checked: true },
-    { name: "Maori", checked: true },
+    { name: "Brown Māori", checked: true },
+    { name: "Māori", checked: true },
     { name: "Brown Pacific", checked: true },
     { name: "Pacific", checked: true },
     { name: "New Zealand European", checked: true },
@@ -33,7 +33,7 @@ export default function Generate() {
     { name: "Asian", checked: true },
     { name: "East-Asian", checked: true },
     { name: "Kiwi", checked: true },
-    { name: "New Zealand", checked: true },
+    { name: "New Zealander", checked: true },
   ]);
   const [llms, setLLMS] = useState<{ name: string; checked: boolean }[]>([
     { name: "GPT-2", checked: true },
