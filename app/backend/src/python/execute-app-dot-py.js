@@ -1,15 +1,32 @@
 import { exec } from "child_process";
 import { promisify } from "util";
 import { resolve } from "path";
+import { platform } from "os";
 
 // Convert exec to return a promise
 const execPromise = promisify(exec);
 
+// Function to detect Python interpreter in venv
+function getPythonPath() {
+  const rootDir = resolve(process.cwd(), "..", "..");
+  const isWindows = platform() === "win32";
+  // Automatically resolve the correct path to the venv's Python interpreter
+  const pythonPath = resolve(
+    rootDir,
+    ".venv",
+    isWindows ? "Scripts" : "bin",
+    "python"
+  );
+
+  return pythonPath;
+}
+
 // Function to run the Python script with arguments
 export async function runPythonScript(prompts, groups, llms, continuations) {
+  const pythonPath = getPythonPath();
   const executablePath = resolve(
     process.cwd(),
-    "../../NZContext/app_for_backend.py"
+    "src/python/generate/app_for_backend.py"
   );
 
   // Convert arguments to JSON strings and escape quotes
@@ -26,7 +43,7 @@ export async function runPythonScript(prompts, groups, llms, continuations) {
   ].join(" ");
 
   // Execute the Python script
-  const command = `python3 ${executablePath} ${args}`;
+  const command = `${pythonPath} ${executablePath} ${args}`;
   console.log(`Executing command: ${command}`);
   try {
     const { stdout, stderr } = await execPromise(command);

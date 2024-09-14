@@ -3,3 +3,6 @@ HuggingFace/.ipynb_checkpoints/*
 .idea/*
 BiasTool.*
 */__pycache__
+*/llm_generated.json
+.venv
+/legacy-work/NZContext/__pycache__
