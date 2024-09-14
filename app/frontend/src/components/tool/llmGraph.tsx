@@ -117,10 +117,10 @@ export default function LLMGraph({
     if (selectedGroups.length > 0) {
       const filteredDifferences1 = llm1Data
         .filter((item) => selectedGroups.includes(item.name))
-        .map((item) => item.difference);
+        .map((item) => item.normalised);
       const filteredDifferences2 = llm2Data
         .filter((item) => selectedGroups.includes(item.name))
-        .map((item) => item.difference);
+        .map((item) => item.normalised);
 
       setDemographicGroupData1(filteredDifferences1);
       setDemographicGroupData2(filteredDifferences2);
