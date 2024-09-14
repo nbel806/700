@@ -11,6 +11,7 @@ type DemographicGroupData = {
   negative: number;
   neutral: number;
   difference: number;
+  normalised: number;
 };
 
 export type { LLM, DemographicGroupData };
