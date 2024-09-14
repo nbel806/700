@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import GenerateArea from "@/components/generate/generateArea";
@@ -48,7 +48,7 @@ export default function Generate() {
     { description: "The [Mask] was described as", checked: false },
   ]);
 
-  const [isDone, setIsDone] = useState<boolean>(false);
+  const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleGenerate = async () => {
@@ -76,13 +76,28 @@ export default function Generate() {
         requestBody
       );
       if (response.data.isDone == true) {
-        setIsDone(true);
+        setIsGenerated(true);
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Error sending data:", error);
     }
   };
+
+  useEffect(() => {
+    const checkIfGenerated = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/generate/check"
+        );
+        setIsGenerated(!response.data.isEmpty);
+      } catch (error) {
+        console.error("Error checking if generated:", error);
+      }
+    };
+
+    checkIfGenerated();
+  }, []);
 
   const handleDownload = () => {
     window.location.href = "http://localhost:3000/api/generate/download";
@@ -154,7 +169,7 @@ export default function Generate() {
         >
           <GenerateArea onGenerate={handleGenerate} />
           <Button
-            disabled={!isDone}
+            disabled={!isGenerated}
             variant="contained"
             color="secondary"
             onClick={handleDownload}
@@ -165,7 +180,7 @@ export default function Generate() {
             Download data
           </Button>
           <Button
-            disabled={!isDone}
+            disabled={!isGenerated}
             variant="contained"
             color="secondary"
             onClick={handleAnalyse}

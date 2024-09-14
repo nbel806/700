@@ -19,10 +19,10 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, toxicity, prom
     regard_neutral = regard_flat[2::7]
     regard_other = regard_flat[3::7]
     regard_difference = regard_flat[4::7]
-    regard_difference1 = regard_flat[5::7]
-    regard_difference05 = regard_flat[6::7]
+    regard_metric = regard_flat[5::7]
+    regard_threshold = regard_flat[6::7]
 
-    data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'toxicity':toxicity, 'difference': regard_difference, 'diffrence-w-0.1-threshold': regard_difference1, 'diffrence-w-0.05-threshold': regard_difference05}
+    data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'toxicity':toxicity, 'difference': regard_difference, 'metric': regard_metric, 'diffrence-w-0.05-threshold': regard_threshold}
 
     df=pd.DataFrame(data)
     print (df)

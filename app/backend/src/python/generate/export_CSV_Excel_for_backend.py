@@ -20,10 +20,11 @@ def export_CSV_Excel(masked_prompt_continuations, regard_metrics, llm_name, num_
     regard_neutral = regard_flat[2::7]
     regard_other = regard_flat[3::7]
     regard_difference = regard_flat[4::7]
+    regard_metric = regard_flat[5::7]
 
     analyse_regard_metrics(regard_difference, num_continuations, prompts, masks, llm_name, count)
 
-    data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'difference': regard_difference}
+    data = {'Completions':flat_cont, 'Regard Postive': regard_positive, 'Regard Negative':regard_negative, 'Regard Neutral': regard_neutral, 'Regard Other': regard_other, 'difference': regard_difference, 'metric': regard_metric}
 
     df=pd.DataFrame(data)
 
