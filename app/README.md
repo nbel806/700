@@ -30,9 +30,6 @@ python3 -m pip install -r requirements.txt
 
 ```bash
 cd app
-```
-
-```bash
 cd backend
 npm i
 npm run start
@@ -42,9 +39,6 @@ npm run start
 
 ```bash
 cd app
-```
-
-```bash
 cd frontend
 npm i
 npm run dev
