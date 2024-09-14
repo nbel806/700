@@ -61,9 +61,9 @@ six==1.16.0
 stack-data==0.6.3
 sympy==1.13.2
 tokenizers==0.19.1
-torch==2.4.1+cu118
-torchaudio==2.4.1+cu118
-torchvision==0.19.1+cu118
+torch==2.4.1
+torchaudio==2.4.1
+torchvision==0.19.1
 tornado==6.4.1
 tqdm==4.66.5
 traitlets==5.14.3
