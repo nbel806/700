@@ -60,6 +60,7 @@ export default function LLMGraph({
     []
   );
   const [openDialog, setOpenDialog] = useState(false);
+  const [numOfGenerations, setNumOfGenerations] = useState(0);
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -126,6 +127,20 @@ export default function LLMGraph({
       setDemographicGroupData2(filteredDifferences2);
     }
   }, [selectedGroups, llm1Data, llm2Data]);
+
+  useEffect(() => {
+    if (llm1Data.length > 0 && llm2Data.length > 0) {
+      const firstGroupData = llm1Data[0];
+      if (firstGroupData) {
+        setNumOfGenerations(
+          firstGroupData.positive +
+            firstGroupData.negative +
+            firstGroupData.neutral
+        );
+      }
+    }
+  }, [llm1Data, llm2Data]);
+
   const data = {
     labels: selectedGroups,
     datasets: [
