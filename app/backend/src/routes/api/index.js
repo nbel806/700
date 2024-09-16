@@ -16,4 +16,8 @@ router.use("/export", exportRouter);
 import generateRouter from "./generate.js";
 router.use("/generate", generateRouter);
 
+// numGenerations
+import numGenerationsRouter from "./num-generations.js";
+router.use("/num_generations", numGenerationsRouter);
+
 export default router;

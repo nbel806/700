@@ -28,6 +28,9 @@ export default function Tool() {
     () => searchParams.get("selectedData") || "default_data"
   );
   const [namesAreChanged, setNamesAreChanged] = useState<boolean>(false);
+  const [numOfGenerations, setNumOfGenerations] = useState<{
+    [key: string]: number;
+  }>({});
 
   const fetchGroups = async (
     llm: string,
@@ -113,6 +116,8 @@ export default function Tool() {
               llmGroups={llmGroupsIntersection}
               selectedData={selectedData}
               namesAreChanged={namesAreChanged}
+              numOfGenerations={numOfGenerations}
+              setNumOfGenerations={setNumOfGenerations}
             />
           </Box>
           <Box
@@ -189,6 +194,8 @@ export default function Tool() {
               <SelectData
                 selectedData={selectedData}
                 setSelectedData={setSelectedData}
+                numOfGenerations={numOfGenerations}
+                setNumOfGenerations={setNumOfGenerations}
               />
             </Box>
           </Box>

@@ -13,9 +13,15 @@ import axios from "axios";
 export default function SelectData({
   selectedData,
   setSelectedData,
+  numOfGenerations,
+  setNumOfGenerations,
 }: {
   selectedData: string;
   setSelectedData: React.Dispatch<React.SetStateAction<string>>;
+  numOfGenerations: { [key: string]: number };
+  setNumOfGenerations: React.Dispatch<
+    React.SetStateAction<{ [key: string]: number }>
+  >;
 }) {
   const [generateData, setGenerateData] = useState(false);
 
@@ -25,24 +31,52 @@ export default function SelectData({
 
   const checkGenerateData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/llm`, {
+      const response = await axios.get(`http://localhost:3000/api/llm/`, {
         params: {
           selectedData: "generated_data",
         },
       });
       if ((await response.data.length) > 0) {
         setGenerateData(true);
-        console.log(true);
       }
     } catch (error) {
       setGenerateData(false);
-      console.log(false);
     }
   };
 
+  const fetchNumGenerations = async (data: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/num_generations`,
+        {
+          params: {
+            selectedData: data,
+          },
+        }
+      );
+      setNumOfGenerations((prevState) => ({
+        ...prevState,
+        [data]: response.data.num_generations,
+      }));
+    } catch (error) {
+      console.error(`Error fetching number of generations:`, error);
+      setNumOfGenerations((prevState) => ({
+        ...prevState,
+        [data]: 0,
+      }));
+    }
+  };
   useEffect(() => {
     checkGenerateData();
+    fetchNumGenerations("default_data");
+    fetchNumGenerations("generated_data");
   }, [selectedData]);
+
+  useEffect(() => {
+    if (numOfGenerations["generated_data"] == 0) {
+      setSelectedData("default_data");
+    }
+  }, [numOfGenerations]);
 
   return (
     <Box
@@ -82,15 +116,16 @@ export default function SelectData({
           style={{ padding: 8 }}
           sx={{ fontSize: "body1" }}
         >
-          Default Data
+          Default Data ({numOfGenerations["default_data"]} Generations)
         </MenuItem>
-        {generateData && (
+        {(generateData || selectedData === "generated_data") && (
           <MenuItem
             value="generated_data"
             style={{ padding: 8 }}
             sx={{ fontSize: "body1" }}
           >
-            Recently Generated Data
+            Recently Generated Data ({numOfGenerations["generated_data"] + " "}
+            Generations)
           </MenuItem>
         )}
       </Select>

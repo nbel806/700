@@ -8,8 +8,15 @@ const generatedDataPath = path.resolve("src/data/llm_generated.json");
 export const dataSourceMiddleware = (req, res, next) => {
   const { selectedData } = req.query;
   try {
+    let data;
     if (selectedData === "generated_data") {
-      req.dataSource = JSON.parse(fs.readFileSync(generatedDataPath, "utf-8"));
+      data = fs.readFileSync(generatedDataPath, "utf-8");
+
+      if (data.trim() === "") {
+        req.dataSource = {};
+      } else {
+        req.dataSource = JSON.parse(data);
+      }
     } else if (selectedData === "default_data") {
       req.dataSource = JSON.parse(fs.readFileSync(defaultDataPath, "utf-8"));
     } else {
