@@ -72,6 +72,12 @@ export default function SelectData({
     fetchNumGenerations("generated_data");
   }, [selectedData]);
 
+  useEffect(() => {
+    if (numOfGenerations["generated_data"] == 0) {
+      setSelectedData("default_data");
+    }
+  }, [numOfGenerations]);
+
   return (
     <Box
       sx={{
