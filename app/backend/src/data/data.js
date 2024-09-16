@@ -76,10 +76,35 @@ const getLLMScore = (llmName, data) => {
   return llm.score;
 };
 
+/**
+ * Retrieves number of generations for given dataset
+ *
+ * @param {object} data - The data object containing LLM information
+ * @return {number} The total of positive, negative, and neutral values
+ */
+const getNumberGenerations = (data) => {
+  if (!data.llms || data.llms.length === 0) {
+    throw new Error("No LLMs found in the data.");
+  }
+  const firstLLM = data.llms[0];
+  if (!firstLLM.grouped || firstLLM.grouped.length === 0) {
+    throw new Error("No grouped data found for the first LLM.");
+  }
+  const firstGroup = firstLLM.grouped[0];
+
+  const numGenerations =
+    (firstGroup.positive || 0) +
+    (firstGroup.negative || 0) +
+    (firstGroup.neutral || 0);
+
+  return numGenerations;
+};
+
 export {
   getLLMNames,
   getDemographicGroups,
   getLLMDataGrouped,
   getLLMDataUngrouped,
   getLLMScore,
+  getNumberGenerations,
 };

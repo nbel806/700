@@ -24,6 +24,7 @@ import {
 import { Group } from "../../app/tool/page";
 import axios from "axios";
 import { DemographicGroupData } from "@/types/data";
+import { ChartOptions } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
@@ -40,6 +41,10 @@ interface LLMGraphProps {
   llmGroups: Group[];
   selectedData: string;
   namesAreChanged: boolean;
+  numOfGenerations: { [key: string]: number };
+  setNumOfGenerations: React.Dispatch<
+    React.SetStateAction<{ [key: string]: number }>
+  >;
 }
 
 export default function LLMGraph({
@@ -48,6 +53,8 @@ export default function LLMGraph({
   llmGroups,
   selectedData,
   namesAreChanged,
+  setNumOfGenerations,
+  numOfGenerations,
 }: LLMGraphProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [llm1Data, setLlm1Data] = useState<DemographicGroupData[]>([]);
@@ -60,7 +67,6 @@ export default function LLMGraph({
     []
   );
   const [openDialog, setOpenDialog] = useState(false);
-  const [numOfGenerations, setNumOfGenerations] = useState(0);
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -131,13 +137,13 @@ export default function LLMGraph({
   useEffect(() => {
     if (llm1Data.length > 0 && llm2Data.length > 0) {
       const firstGroupData = llm1Data[0];
-      if (firstGroupData) {
-        setNumOfGenerations(
-          firstGroupData.positive +
-            firstGroupData.negative +
-            firstGroupData.neutral
-        );
-      }
+      // if (firstGroupData && selectedData === "generated_data") {
+      //   setNumOfGenerations(
+      //     firstGroupData.positive +
+      //       firstGroupData.negative +
+      //       firstGroupData.neutral
+      //   );
+      // }
     }
   }, [llm1Data, llm2Data]);
 
@@ -165,29 +171,29 @@ export default function LLMGraph({
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "top",
         labels: {
           font: {
-            family: "Arial" as const,
+            family: "Arial",
             size: 18,
-            style: "normal" as const,
-            weight: "bold" as const,
+            style: "normal",
+            weight: "bold",
           },
           padding: 20,
         },
       },
       title: {
         display: true,
-        text: "Demographic group bias between LLMs",
+        text: `Demographic group bias between LLMs (n= ${numOfGenerations[selectedData]})`,
         font: {
-          family: "Arial" as const,
+          family: "Arial",
           size: 30,
-          style: "normal" as const,
-          weight: "bold" as const,
+          style: "normal",
+          weight: "bold",
         },
         padding: {
           top: 20,
@@ -202,26 +208,33 @@ export default function LLMGraph({
           display: true,
           text: "LLM Generation bias",
           font: {
-            family: "Arial" as const,
+            family: "Arial",
             size: 16,
-            style: "normal" as const,
-            weight: "bold" as const,
+            style: "normal",
+            weight: "bold",
           },
         },
         ticks: {
           font: {
-            family: "Arial" as const,
+            family: "Arial",
             size: 16,
-            style: "normal" as const,
+            style: "normal",
+          },
+          callback: (value: number | string) => {
+            return typeof value === "number"
+              ? value > 0
+                ? `+${value}`
+                : value
+              : value;
           },
         },
       },
       x: {
         ticks: {
           font: {
-            family: "Arial" as const,
+            family: "Arial",
             size: 14,
-            style: "normal" as const,
+            style: "normal",
           },
         },
         grid: {
@@ -231,10 +244,10 @@ export default function LLMGraph({
           display: true,
           text: "Demographic Groups",
           font: {
-            family: "Arial" as const,
+            family: "Arial",
             size: 20,
-            style: "normal" as const,
-            weight: "bold" as const,
+            style: "normal",
+            weight: "bold",
           },
         },
       },
