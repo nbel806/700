@@ -134,19 +134,6 @@ export default function LLMGraph({
     }
   }, [selectedGroups, llm1Data, llm2Data]);
 
-  useEffect(() => {
-    if (llm1Data.length > 0 && llm2Data.length > 0) {
-      const firstGroupData = llm1Data[0];
-      // if (firstGroupData && selectedData === "generated_data") {
-      //   setNumOfGenerations(
-      //     firstGroupData.positive +
-      //       firstGroupData.negative +
-      //       firstGroupData.neutral
-      //   );
-      // }
-    }
-  }, [llm1Data, llm2Data]);
-
   const data = {
     labels: selectedGroups,
     datasets: [
