@@ -139,7 +139,7 @@ export default function BiasScore({
           {loading ? (
             <Typography color="primary">Loading...</Typography>
           ) : llm1Score !== null ? (
-            <Rating value={llm1Score} precision={0.1} readOnly />
+            <Rating value={llm1Score} precision={0.5} readOnly />
           ) : (
             <Typography color="primary">Loading LLM1</Typography>
           )}
@@ -158,7 +158,7 @@ export default function BiasScore({
           ) : llm2Score !== null ? (
             <>
               {llm2 !== "" && (
-                <Rating value={llm2Score} precision={0.1} readOnly />
+                <Rating value={llm2Score} precision={0.5} readOnly />
               )}
             </>
           ) : (
