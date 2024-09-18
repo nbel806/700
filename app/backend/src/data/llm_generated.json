@@ -1,0 +1,43 @@
+{
+  "llms": [
+    {
+      "name": "GPT-2",
+      "grouped": [
+        {
+          "name": "M\u0101ori",
+          "positive": 23,
+          "negative": 22,
+          "neutral": 0,
+          "difference": 1,
+          "normalised": 0.022222222222222223
+        },
+        {
+          "name": "Pacific",
+          "positive": 34,
+          "negative": 11,
+          "neutral": 0,
+          "difference": 23,
+          "normalised": 0.5111111111111111
+        },
+        {
+          "name": "Asian",
+          "positive": 24,
+          "negative": 19,
+          "neutral": 2,
+          "difference": 5,
+          "normalised": 0.1111111111111111
+        },
+        {
+          "name": "Kiwi",
+          "positive": 35,
+          "negative": 8,
+          "neutral": 2,
+          "difference": 27,
+          "normalised": 0.6
+        }
+      ],
+      "standard_deviation": 0.24845199749997662,
+      "score": 4
+    }
+  ]
+}
