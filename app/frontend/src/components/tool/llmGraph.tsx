@@ -193,7 +193,7 @@ export default function LLMGraph({
         beginAtZero: true,
         title: {
           display: true,
-          text: "LLM Generation bias",
+          text: "LLM Generation bias metric",
           font: {
             family: "Arial",
             size: 16,
@@ -213,6 +213,17 @@ export default function LLMGraph({
                 ? `+${value}`
                 : value
               : value;
+          },
+        },
+        grid: {
+          // customize the zero line
+          lineWidth: (ctx) => {
+            return ctx.tick.value === 0 ? 1 : 1;
+          },
+          color: (ctx) => {
+            return ctx.tick.value === 0
+              ? "rgba(0, 0, 0, 1)"
+              : "rgba(0, 0, 0, 0.1)";
           },
         },
       },
