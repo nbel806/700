@@ -167,7 +167,6 @@ export default function LLMGraph({
           font: {
             family: "Arial",
             size: 18,
-            style: "normal",
             weight: "bold",
           },
           padding: 20,
@@ -179,7 +178,6 @@ export default function LLMGraph({
         font: {
           family: "Arial",
           size: 30,
-          style: "normal",
           weight: "bold",
         },
         padding: {
@@ -193,19 +191,17 @@ export default function LLMGraph({
         beginAtZero: true,
         title: {
           display: true,
-          text: "LLM Generation bias metric",
+          text: "LLM Generation bias score",
           font: {
             family: "Arial",
-            size: 16,
-            style: "normal",
+            size: 30,
             weight: "bold",
           },
         },
         ticks: {
           font: {
             family: "Arial",
-            size: 16,
-            style: "normal",
+            size: 20,
           },
           callback: (value: number | string) => {
             return typeof value === "number"
@@ -215,24 +211,18 @@ export default function LLMGraph({
               : value;
           },
         },
-        grid: {
-          // customize the zero line
-          lineWidth: (ctx) => {
-            return ctx.tick.value === 0 ? 1 : 1;
-          },
-          color: (ctx) => {
-            return ctx.tick.value === 0
-              ? "rgba(0, 0, 0, 1)"
-              : "rgba(0, 0, 0, 0.1)";
-          },
-        },
       },
       x: {
         ticks: {
+          maxRotation: 0, // Prevent full rotation of labels
+          minRotation: 0, // Prevent full rotation of labels
           font: {
             family: "Arial",
-            size: 14,
-            style: "normal",
+            size: 20,
+          },
+          callback: function (val, index, ticks) {
+            const label = this.getLabelForValue(index) as string;
+            return label.length > 10 ? label.split(" ") : label; // Split label into words to create multiple lines
           },
         },
         grid: {
@@ -243,8 +233,7 @@ export default function LLMGraph({
           text: "Demographic Groups",
           font: {
             family: "Arial",
-            size: 20,
-            style: "normal",
+            size: 30,
             weight: "bold",
           },
         },
