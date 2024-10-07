@@ -211,18 +211,29 @@ export default function LLMGraph({
               : value;
           },
         },
+        grid: {
+          // customize the zero line
+          lineWidth: (ctx) => {
+            return ctx.tick.value === 0 ? 1 : 1;
+          },
+          color: (ctx) => {
+            return ctx.tick.value === 0
+              ? "rgba(0, 0, 0, 1)"
+              : "rgba(0, 0, 0, 0.1)";
+          },
+        },
       },
       x: {
         ticks: {
-          maxRotation: 0, // Prevent full rotation of labels
-          minRotation: 0, // Prevent full rotation of labels
+          maxRotation: 0,
+          minRotation: 0,
           font: {
             family: "Arial",
             size: 20,
           },
           callback: function (val, index, ticks) {
             const label = this.getLabelForValue(index) as string;
-            return label.length > 10 ? label.split(" ") : label; // Split label into words to create multiple lines
+            return label.length > 10 ? label.split(" ") : label;
           },
         },
         grid: {
