@@ -117,7 +117,7 @@ export default function BiasScore({
           fontWeight={"bold"}
           sx={{ flex: 1, textAlign: "center" }}
         >
-          Bias Score
+          Bias Star Rating
         </Typography>
         <Typography
           variant="h6"

@@ -103,7 +103,7 @@ export default function Tool() {
           }}
         >
           <Box
-            flex="3"
+            flex="4"
             style={{
               padding: 16,
               overflow: "auto",

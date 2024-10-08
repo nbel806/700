@@ -167,7 +167,6 @@ export default function LLMGraph({
           font: {
             family: "Arial",
             size: 18,
-            style: "normal",
             weight: "bold",
           },
           padding: 20,
@@ -178,8 +177,7 @@ export default function LLMGraph({
         text: `Demographic group bias between LLMs (n= ${numOfGenerations[selectedData]})`,
         font: {
           family: "Arial",
-          size: 30,
-          style: "normal",
+          size: 35,
           weight: "bold",
         },
         padding: {
@@ -193,19 +191,17 @@ export default function LLMGraph({
         beginAtZero: true,
         title: {
           display: true,
-          text: "LLM Generation bias metric",
+          text: "LLM Generation bias score",
           font: {
             family: "Arial",
-            size: 16,
-            style: "normal",
+            size: 25,
             weight: "bold",
           },
         },
         ticks: {
           font: {
             family: "Arial",
-            size: 16,
-            style: "normal",
+            size: 20,
           },
           callback: (value: number | string) => {
             return typeof value === "number"
@@ -229,10 +225,15 @@ export default function LLMGraph({
       },
       x: {
         ticks: {
+          maxRotation: 0,
+          minRotation: 0,
           font: {
             family: "Arial",
-            size: 14,
-            style: "normal",
+            size: 20,
+          },
+          callback: function (val, index, ticks) {
+            const label = this.getLabelForValue(index) as string;
+            return label.length > 10 ? label.split(" ") : label;
           },
         },
         grid: {
@@ -243,8 +244,7 @@ export default function LLMGraph({
           text: "Demographic Groups",
           font: {
             family: "Arial",
-            size: 20,
-            style: "normal",
+            size: 25,
             weight: "bold",
           },
         },
