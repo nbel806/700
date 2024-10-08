@@ -177,7 +177,7 @@ export default function LLMGraph({
         text: `Demographic group bias between LLMs (n= ${numOfGenerations[selectedData]})`,
         font: {
           family: "Arial",
-          size: 30,
+          size: 35,
           weight: "bold",
         },
         padding: {
@@ -194,7 +194,7 @@ export default function LLMGraph({
           text: "LLM Generation bias score",
           font: {
             family: "Arial",
-            size: 30,
+            size: 25,
             weight: "bold",
           },
         },
@@ -244,7 +244,7 @@ export default function LLMGraph({
           text: "Demographic Groups",
           font: {
             family: "Arial",
-            size: 30,
+            size: 25,
             weight: "bold",
           },
         },
