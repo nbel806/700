@@ -181,7 +181,8 @@ export default function Prompts({ prompts, setPrompts }: PromptsProps) {
         </DialogTitle>
         <DialogContent style={{ padding: 16 }}>
           <Typography variant="body1" color="primary">
-            . For more information...
+            Prompts are combined with the demographic groups to generate
+            continuations.
           </Typography>
         </DialogContent>
         <DialogActions style={{ padding: 8 }}>
