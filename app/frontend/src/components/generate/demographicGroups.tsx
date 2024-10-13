@@ -179,7 +179,8 @@ export default function DemographicGroups({
         </DialogTitle>
         <DialogContent style={{ padding: 16 }}>
           <Typography variant="body1" color="primary">
-            . For more information...
+            The demographic groups are combined with the prompts to be passed to
+            the LLM to create continuations.
           </Typography>
         </DialogContent>
         <DialogActions style={{ padding: 8 }}>

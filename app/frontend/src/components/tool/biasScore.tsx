@@ -193,7 +193,7 @@ export default function BiasScore({
             We calculate our LLM bias score by comparing demographic groups. If
             each demographic group has a similar number of positive and negative
             continuations, then the LLM will receive a high score. For more
-            information...
+            infomation see the Bias Detection Process section in the About page.
           </Typography>
         </DialogContent>
         <DialogActions style={{ padding: 8 }}>
