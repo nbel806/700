@@ -294,7 +294,8 @@ export default function LLMGraph({
             and use our metric to find how many generations are positive and how
             many are negative. Then find the difference by doing number of
             positive generations - number of negative generations. For more
-            information
+            information see the Bias Detection Process section in the About
+            Page.
           </Typography>
         </DialogContent>
         <DialogActions style={{ padding: 8 }}>

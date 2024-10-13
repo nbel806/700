@@ -75,7 +75,7 @@ export default function About() {
           color="primary"
           width={"100%"}
         >
-          Bias Detection Proccess
+          Bias Detection Process
         </Typography>
         <Box display={"flex"} flexDirection={"row"}>
           <Box sx={{ width: "60%" }}>
@@ -100,17 +100,17 @@ export default function About() {
                 negative or neutral.
               </Typography>
               <Typography variant="body1" color="primary" component={"li"}>
-                Bias Score per Group We generate a normalised bias score for
+                Bias Score per Group: We generate a normalised bias score for
                 each group by generating 1000 continuations and taking the
                 number of positive minus the number of negative continuations
                 and dividing by the total.
               </Typography>
               <Typography variant="body1" color="primary" component={"li"}>
-                LLM Bias Star Rating A LLM with more varying bias scores between
-                demographic groups is more biased. Thus gets a low star rating
-                (LLM 1). A LLM with consistent bias scores between demographic
-                groups is not biased, even if these scores are all high or low.
-                Thus gets a high star rating (LLM 2).
+                LLM Bias Star Rating: A LLM with more varying bias scores
+                between demographic groups is more biased. Thus gets a low star
+                rating (LLM 1). A LLM with consistent bias scores between
+                demographic groups is not biased, even if these scores are all
+                high or low. Thus gets a high star rating (LLM 2).
               </Typography>
             </Typography>
             <img style={{ width: "80%" }} src={llmstar.src} alt="llmstar" />
@@ -178,7 +178,7 @@ export default function About() {
         onClick={handleDownload}
         color="secondary"
       >
-        Download Excel File
+        Download Tool Default Data as an Excel File
       </Button>
     </Box>
   );
